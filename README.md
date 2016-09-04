@@ -1,5 +1,6 @@
 # CHAFITY
 [![Build Status](https://travis-ci.org/kenigbolo/Chafity.png)](https://travis-ci.org/kenigbolo/Chafity) [![CircleCI](https://circleci.com/gh/kenigbolo/Chafity/tree/master.svg?style=svg&circle-token=5dc953df472e42d2b6ea55bc719cabb0ade4bcaf)](https://circleci.com/gh/kenigbolo/Chafity/tree/master)
+
 Chafity is a charity media platform meant for networking and connecting people in order to make business as well as donate to charity. Users of this platform will define the amount that needs to be donated to their chosen charity fund when another user wishes to connect with them. Once the contact request is sent, the donation will be deducted from one’s credit card however the donation is only transferred to the charity’s bank account only when the request is accepted and contact has been made and confirmed.
 
 ##Getting Started
