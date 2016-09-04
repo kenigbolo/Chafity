@@ -1,15 +1,40 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$chafity-font: Dosis;
+$chafity-orange: #e4b363;
+$chafity-darkgray: rgba(58, 74, 81, 0.95);
+$chafity-gray: #e4e8eb;
+$chafity-darkergray:#3a4a51;
+
 
 #landing-header{
-  height:180px;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  padding: 5% 0 5% 0;
+
+  h1{
+    font-family: $chafity-font;
+    color:$chafity-darkgray;
+    font-size: 80px;
+  }
+
+  p{
+    color: $chafity-orange;
+    font-size: 30px;
+    font-family: 'OpenSans' , 'Open Sans';
+    font-weight: lighter;
+
+  }
+
+
 }
 
 #landing-body{
-  height: 520px;
-  background-color: rgba(58,74,81,0.95);
-  color:#e4e8eb;
+  height: 50%;
+  background-color:$chafity-darkgray;
+  color:$chafity-gray;
   letter-spacing:0px;
   text-align:left;
   padding-left: 10%;
@@ -19,16 +44,16 @@
   h2{
     font-family:Dosis;
     font-size:36px;
-    color:#e4e8eb;
+    color:$chafity-gray;
     letter-spacing:0px;
     text-align:left;
     font-weight: bold;
   }
 
   p{
-    font-family: OpenSans , 'Open Sans';
+    font-family: 'OpenSans' , 'Open Sans';
     font-size:13px;
-    color:#e4e8eb;
+    color:$chafity-gray;
     letter-spacing:0px;
     text-align:left;
     font-weight: lighter;
@@ -36,20 +61,19 @@
 
   #landing-body-left{
 
-
     .landing-box{
-      background-color:#3a4a51;
+      background-color:$chafity-darkergray;
       border-radius:9px;
       width:30%;
       height:30%;
-      margin-left: 3px;
-      margin-right: 3px;
+      padding: 10%;
       text-align: center;
-      font-family: 'Dosis';
+      font-family: $chafity-font;
       font-size:18px;
-      color:#e4b363;
+      color:$chafity-orange;
       letter-spacing:0px;
       align-items: center;
+      border: 1px white;
     }
   }
 
@@ -60,7 +84,15 @@
     }
 
   }
+}
 
+#landing-footer{
 
+  #landing-footer-top{
+    h2{
+      font-family: $chafity-font;
+
+    }
+  }
 
 }
