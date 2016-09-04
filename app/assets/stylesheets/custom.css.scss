@@ -4,6 +4,15 @@
 
 #landing-header{
   height:180px;
+  text-align: center;
+
+  h1{
+    font-family:Dosis;
+    font-size:36px;
+    color:#e4b363;
+    letter-spacing:0px;
+    font-weight: bold;
+  }
 }
 
 #landing-body{
@@ -16,6 +25,11 @@
   padding-right: 10%;
   padding-top: 5%;
 
+  h1{
+    color:#e4b363;
+    font-family: Dosis;
+    font-size: 48px;
+  }
   h2{
     font-family:Dosis;
     font-size:36px;
@@ -30,7 +44,7 @@
     font-size:13px;
     color:#e4e8eb;
     letter-spacing:0px;
-    text-align:left;
+    text-align:center;
     font-weight: lighter;
   }
 
