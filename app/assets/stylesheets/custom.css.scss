@@ -12,7 +12,7 @@ $chafity-darkergray:#3a4a51;
   align-items: center;
   align-content: center;
   text-align: center;
-  padding: 5% 0 5% 0;
+  padding: 5% 0 2.5% 0;
 
   h1{
     font-family: $chafity-font;
@@ -27,8 +27,6 @@ $chafity-darkergray:#3a4a51;
     font-weight: lighter;
 
   }
-
-
 }
 
 #landing-body{
@@ -42,7 +40,7 @@ $chafity-darkergray:#3a4a51;
   padding-top: 5%;
 
   h2{
-    font-family:Dosis;
+    font-family:$chafity-font;
     font-size:36px;
     color:$chafity-gray;
     letter-spacing:0px;
@@ -62,18 +60,7 @@ $chafity-darkergray:#3a4a51;
   #landing-body-left{
 
     .landing-box{
-      background-color:$chafity-darkergray;
-      border-radius:9px;
-      width:30%;
-      height:30%;
-      padding: 10%;
-      text-align: center;
-      font-family: $chafity-font;
-      font-size:18px;
-      color:$chafity-orange;
-      letter-spacing:0px;
-      align-items: center;
-      border: 1px white;
+
     }
   }
 
@@ -87,11 +74,29 @@ $chafity-darkergray:#3a4a51;
 }
 
 #landing-footer{
+  text-align: center;
+  padding-top: 3%;
+  font-family: $chafity-font;
 
   #landing-footer-top{
     h2{
-      font-family: $chafity-font;
 
+      color: $chafity-orange;
+    }
+
+    p{
+      font-size: 18.0px;
+      font-weight: normal;
+    }
+  }
+
+  #landing-footer-bottom{
+    padding-top: 3%;
+
+    h2{
+      color: $chafity-orange;
+      letter-spacing: 0px;
+      font-size: 50px;
     }
   }
 
