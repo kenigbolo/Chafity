@@ -1,3 +1,96 @@
-<%= render 'home/header' %>
-<%= render 'home/body' %>
-<%= render 'home/footer' %>
+<div class="">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" id="landing-page-header">
+      <%= image_tag("logo.png", size: "256x100") %>
+      <h3>Connecting for charity</h3>
+    </div>
+  </div>
+  <div class="row" id="landing-page-body">
+    <div class="col-md-8">
+      <div class="row">
+        <h2>Kuidas tootab</h2>
+        <p>Chafity</p>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <span>
+            <%= image_tag("create_user.png", size: "74x66") %>
+          </span>
+          <div class="">
+            <h2> 1. Seadista</h2>
+            <p>Lood konot </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <span>
+          <%= image_tag("search.png", size: "57x57") %>
+          </span>
+          <div class="">
+            <h2> 2. Otsi ja ole otsitav</h2>
+            <p>Lood konot </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <span>
+              <%= image_tag("connect.png", size: "118x67") %>
+            </span>
+          <div class="">
+            <h2> 3. Antena</h2>
+            <p>Lood konot </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2>Liitu meiega ja toeta iga konedega abivajajaid</h2>
+      <p>Sinnu somthing something dark side</p>
+      <div class="container">
+        <div class="col-md-12">
+          <button class="btn btn-lg">Signup</button>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-lg">Login</button>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-lg" >Linkedin Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="landing-page-footer">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <h2>Kogutud</h2>
+        <p>Esinda</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="bottom-boxes">
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="row">
+              <%= image_tag("unicef.png") %>
+              </div>
+              <div class="row">
+              <h2>Unicef</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <%= image_tag("moma.png") %>
+          <h2>Moma</h2>
+        </div>
+        <div class="col-md-3">
+          <%= image_tag("wwf.png") %>
+          <h2>WWf</h2>
+        </div>
+        <div class="col-md-3">
+          <%= image_tag("human.png") %>
+          <h2>Human rights watch</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
