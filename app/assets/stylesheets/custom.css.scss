@@ -7,13 +7,16 @@ $chafity-darkgray: rgba(58, 74, 81, 0.95);
 $chafity-gray: #e4e8eb;
 $chafity-darkergray: #3a4a51;
 $chafity-buttons-gray: #6b7c83;
+$light-gray: #777;
+$gray-medium-light: #eaeaea;
 
 body {
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 #landing-page-header{
+  padding: 3% 0% 1% 0%;
   text-align: center;
 }
 
@@ -89,4 +92,29 @@ body {
 }
 .landing-btns{
   text-align: center;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $light-gray;
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
+  small {
+    float: left;
+    margin-right: 15px;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
