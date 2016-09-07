@@ -6,6 +6,7 @@ $chafity-orange: #e4b363;
 $chafity-darkgray: rgba(58, 74, 81, 0.95);
 $chafity-gray: #e4e8eb;
 $chafity-darkergray: #3a4a51;
+$chafity-buttons-gray: #6b7c83;
 
 body {
   padding-left: 7%;
@@ -80,4 +81,12 @@ body {
   h2{
     font-size: 50px;
   }
+}
+.landing-btn{
+  background-color: $chafity-buttons-gray ;
+  width: 200px;
+  margin: 15px 0 15px 0;
+}
+.landing-btns{
+  text-align: center;
 }
