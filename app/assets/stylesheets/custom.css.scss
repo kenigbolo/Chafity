@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-social";
+@import 'font-awesome';
 
 $chafity-font: Dosis;
 $chafity-orange: #e4b363;
@@ -11,8 +13,8 @@ $light-gray: #777;
 $gray-medium-light: #eaeaea;
 
 body {
-  padding-left: 1%;
-  padding-right: 1%;
+  //padding-left: 7%;
+  //padding-right: 7%;
 }
 
 #landing-page-header{
@@ -50,8 +52,9 @@ body {
       background-color: $chafity-darkergray;
       width: 249px;
       height: 233px;
-      padding: 2%;
+      //padding: 2%;
       margin: 10px;
+      overflow: hidden;
     }
   }
 }
