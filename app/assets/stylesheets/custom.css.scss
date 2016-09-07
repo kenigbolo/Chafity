@@ -5,20 +5,79 @@ $chafity-font: Dosis;
 $chafity-orange: #e4b363;
 $chafity-darkgray: rgba(58, 74, 81, 0.95);
 $chafity-gray: #e4e8eb;
-$chafity-darkergray:#3a4a51;
+$chafity-darkergray: #3a4a51;
 
-body{
+body {
   padding-left: 7%;
   padding-right: 7%;
 }
 
-.bottom-boxes{
+#landing-page-header{
   text-align: center;
-  h2{
-    font-family: $chafity-font;
-    font-size: 50px;
-    letter-spacing: 0px;
-    color: $chafity-orange;
+}
 
+#landing-page-body{
+  background-color: $chafity-darkgray;
+  color: white;
+  padding: 3%;
+  h2{
+    font-size: 36px;
+    font-family: $chafity-orange;
+  }
+
+  .top-boxes{
+    //align-items: center;
+    text-align: center;
+
+    h2{
+      font-family:$chafity-font;
+      font-size:18px;
+      color:$chafity-orange;
+      letter-spacing:0px;
+      text-align:center;
+    }
+
+    p{
+      font-size: 12px;
+    }
+
+    .top-boxes-x{
+      border-radius: 9px;
+      background-color: $chafity-darkergray;
+      width: 249px;
+      height: 233px;
+      padding: 2%;
+      margin: 10px;
+    }
+  }
+}
+
+
+#landing-page-footer {
+  padding-top: 20px;
+  //padding-bottom: 20px;
+  text-align: center;
+  font-family: $chafity-font;
+  .latest-donations{
+    color: $chafity-orange;
+    font-size: 30px;
+  }
+  p{
+    font-size: 18px;
+  }
+}
+
+.bottom-boxes {
+  padding-top: 61px;
+  text-align: center;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  color: $chafity-orange;
+  letter-spacing: 0px;
+  font-family: $chafity-font;
+  font-weight: bold;
+
+  h2{
+    font-size: 50px;
   }
 }
