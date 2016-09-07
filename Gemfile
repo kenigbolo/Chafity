@@ -27,6 +27,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Gem for omniauth
+gem 'omniauth'
+gem 'omniauth-linkedin'
+
+#Gem for env variables
+gem 'figaro'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
