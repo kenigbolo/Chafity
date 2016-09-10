@@ -12,27 +12,36 @@ $chafity-buttons-gray: #6b7c83;
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
 
-body {
-  //padding-left: 7%;
-  //padding-right: 7%;
+#landing-page-header{
+  text-align: center;
+  h3{
+    font-family: $chafity-font,sans-serif;
+    color: $chafity-orange;
+    font-size: 30px;
+    font-weight: lighter;
+    letter-spacing: -1px;
+  }
+  #logo{
+    height: 74.25px;
+    width: auto;
+    opacity: .80;
+  }
 }
 
-#landing-page-header{
-  padding: 3% 0% 1% 0%;
-  text-align: center;
-}
 
 #landing-page-body{
   background-color: $chafity-darkgray;
+  padding: 2% 3% 2% 3%;
   color: white;
-  padding: 3%;
-  h2{
+  text-align: left;
+
+  h1{
+    padding-left: 30px;
+    font-family: $chafity-font,sans-serif;
     font-size: 36px;
-    font-family: $chafity-orange;
   }
 
   .top-boxes{
-    //align-items: center;
     text-align: center;
 
     h2{
@@ -40,7 +49,6 @@ body {
       font-size:18px;
       color:$chafity-orange;
       letter-spacing:0px;
-      text-align:center;
     }
 
     p{
@@ -49,10 +57,11 @@ body {
 
     .top-boxes-x{
       border-radius: 9px;
+      border-color: #CCCCCC;
       background-color: $chafity-darkergray;
       width: 249px;
       height: 233px;
-      //padding: 2%;
+      padding: 1px 10px 1px 10px ;
       margin: 10px;
       overflow: hidden;
     }
@@ -60,64 +69,65 @@ body {
 }
 
 
-#landing-page-footer {
-  padding-top: 20px;
-  //padding-bottom: 20px;
-  text-align: center;
-  font-family: $chafity-font;
-  .latest-donations{
-    color: $chafity-orange;
-    font-size: 30px;
-  }
-  p{
-    font-size: 18px;
-  }
-}
 
-.bottom-boxes {
-  padding-top: 61px;
-  text-align: center;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  color: $chafity-orange;
-  letter-spacing: 0px;
-  font-family: $chafity-font;
-  font-weight: bold;
-
-  h2{
-    font-size: 50px;
-  }
-}
-.landing-btn{
-  background-color: $chafity-buttons-gray ;
-  width: 200px;
-  margin: 15px 0 15px 0;
-}
-.landing-btns{
-  text-align: center;
-}
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $light-gray;
-  a {
-    color: #555;
-    &:hover {
-      color: #222;
-    }
-  }
-  small {
-    float: left;
-    margin-right: 15px;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
+//#landing-page-footer {
+//  padding-top: 20px;
+//  //padding-bottom: 20px;
+//  text-align: center;
+//  font-family: $chafity-font;
+//  .latest-donations{
+//    color: $chafity-orange;
+//    font-size: 30px;
+//  }
+//  p{
+//    font-size: 18px;
+//  }
+//}
+//
+//.bottom-boxes {
+//  padding-top: 61px;
+//  text-align: center;
+//  padding-bottom: 0px;
+//  margin-bottom: 0px;
+//  color: $chafity-orange;
+//  letter-spacing: 0px;
+//  font-family: $chafity-font;
+//  font-weight: bold;
+//
+//  h2{
+//    font-size: 50px;
+//  }
+//}
+//.landing-btn{
+//  background-color: $chafity-buttons-gray ;
+//  width: 200px;
+//  margin: 15px 0 15px 0;
+//}
+//.landing-btns{
+//  text-align: center;
+//}
+//
+//footer {
+//  margin-top: 45px;
+//  padding-top: 5px;
+//  border-top: 1px solid $gray-medium-light;
+//  color: $light-gray;
+//  a {
+//    color: #555;
+//    &:hover {
+//      color: #222;
+//    }
+//  }
+//  small {
+//    float: left;
+//    margin-right: 15px;
+//  }
+//  ul {
+//    float: right;
+//    list-style: none;
+//    li {
+//      float: left;
+//      margin-left: 15px;
+//    }
+//  }
+//}
