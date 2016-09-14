@@ -53,3 +53,4 @@ gem 'simple_form'
 gem "figaro"
 gem 'bootstrap-social-rails'
 gem 'font-awesome-rails'
+gem 'devise'
