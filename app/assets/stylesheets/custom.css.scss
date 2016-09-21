@@ -75,6 +75,12 @@ $gray-medium-light: #eaeaea;
   width: 200px;
   margin: 15px 0 15px 0;
   border-radius: 3px;
+  text-decoration: none;
+  color: white;
+}
+
+.landing-btn:visited{
+  color: white;
 }
 
 .landing-btn:hover{
