@@ -4,10 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  # attr_accessor :email, :password, :password_confirmation, :remember_me
 
-  # validates_presence_of :email
-  # validates_uniqueness_of :email
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
