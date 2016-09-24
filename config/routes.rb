@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'any/index'
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   get 'home/index'
   root 'home#index'
