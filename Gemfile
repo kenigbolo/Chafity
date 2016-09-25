@@ -62,3 +62,4 @@ gem "figaro"
 gem 'bootstrap-social-rails'
 gem 'font-awesome-rails'
 gem 'devise'
+gem 'friendly_id', '~> 5.1.0'
