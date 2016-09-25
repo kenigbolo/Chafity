@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="col-md-offset-1 col-md-6">
+    <div class="col-md-4 ">
+      <%= image_tag 'unicef.png', size: '40x40', class: 'profile' %>
+    </div>
+    <div class="col-md-8">
+      <h2>
+        <%= @user.first_name  %>
+        <%= @user.last_name  %>
+      </h2>
+      <p>
+        <%= @user.email  %>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="col-md-6">
+      <p> Minimum Donation </p>
+      <h2>80$</h2>
+    </div>
+    <div class="col-md-6">
+      <p> Donated </p>
+      <h2>908980$</h2>
+    </div>
+  </div>
+</div>
+
+
