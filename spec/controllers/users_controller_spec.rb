@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
@@ -30,4 +31,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-end
+
+
+
+=end
