@@ -119,7 +119,27 @@ $gray-medium-light: #eaeaea;
     text-align: center;
   }
 }
+/* navigation */
+#main-nav{
+  border-bottom: thin solid black;
+  overflow: hidden;
+  padding-top: 5px ;
+  padding-bottom: 5px;
+  ul{
+    float: right;
+    list-style: none;
+    text-decoration: none;
+    li{
+      float: left;
+      margin-left: 15px;
+      text-decoration: none;
+      a{
+        text-decoration: none;
+      }
+    }
+  }
 
+}
 
 /*application */
 footer {
