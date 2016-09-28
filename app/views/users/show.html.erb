@@ -1,29 +1,27 @@
-<div class="container user-profile">
-  <div class="col-md-offset-1 col-md-6 user-details">
-    <div class="col-md-4 ">
+<div class="user-profile">
+  <div class="col-md-6 user-details">
+    <div class="col-md-2 ">
       <%= image_tag @user.image, class: 'profile-image' %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10 profile-texts">
       <h2>
         <%= @user.first_name  %>
         <%= @user.last_name  %>
       </h2>
-      <p>
-        <%= @user.headline  %>
-      </p>
-      <p>
+      <h3>
+        <%= @user.headline  %> <br>
         <%= @user.description %>
-      </p>
+      </h3>
     </div>
   </div>
   <div class="col-md-4 user-price">
     <div class="col-md-6">
-      <p> Price Tag </p>
-      <h2>80$</h2>
+      <p>Price Tag</p>
+      <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 3, unit: '€')%></h2>
     </div>
     <div class="col-md-6">
-      <p> Donated </p>
-      <h2>908980$</h2>
+      <p>Total Donated</p>
+      <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 3, unit: '€') %></h2>
     </div>
   </div>
 </div>
