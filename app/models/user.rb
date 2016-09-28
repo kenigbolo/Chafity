@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  extend FriendlyId
+  friendly_id :match_names , use: [:slugged, :finders]
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
@@ -38,6 +41,27 @@ class User < ApplicationRecord
 
   def password_required?
   	super && provider.blank?
+  end
+
+
+  def match_names
+    names =  "#{self.first_name}.#{self.last_name}"
+  end
+
+  def slug_candidates
+    [
+        [:first_name, :last_name],
+        [:first_name, :last_name,:id]
+    ]
+  end
+
+# TODO: this method is to be update as well
+	def self.search(search)
+    if search
+      User.where('first_name = ? OR last_name = ?', search, search)
+    else
+      User.all
+    end
   end
 
 end
