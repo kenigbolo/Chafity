@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users #, only: [:show, :edit, :update, :destroy]
   get 'auth/:provider/callback', to: 'sessions#create'
   root 'home#index'
+  get '/about', to: 'home#about'
 
 
 
