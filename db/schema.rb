@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924140549) do
+ActiveRecord::Schema.define(version: 20160928150642) do
+
+  create_table "charities", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "minimum_amount"
+    t.decimal  "total_amount"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
