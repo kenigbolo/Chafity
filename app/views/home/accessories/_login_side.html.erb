@@ -3,11 +3,11 @@
   <h2>the ones in need with every call!</h2>
   <p>All your information will stay private.</p>
   <div class="row">
+    <div class="col-md-12">
+      <%= render 'users/new' %>
+    </div>
     <div class="col-md-12 ">
       <%= link_to 'Register', new_user_registration_path , class: 'btn btn-lg landing-btn' , remote: false , id:'logon'  %>
-    </div>
-    <div class="col-md-12">
-      <%= link_to 'Login', new_user_session_path , class: 'btn btn-lg landing-btn' , remote: false , id:'login'  %>
     </div>
     <div class="col-md-12">
       <%= button_to user_linkedin_omniauth_authorize_path, class: "btn btn-social btn-linkedin"  do %>
