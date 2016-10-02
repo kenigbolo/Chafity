@@ -23,5 +23,24 @@ When(/^I fill the form$/) do
 end
 
 Then(/^I should see my details$/) do
-  expect(page).to have_content('Toni Parn')
+  expect(page).to have_content('Dashboard Logout Toni Parn')
 end
+
+When(/^I click on 'Login with linkedin'$/) do
+  pending # Routing error
+  # click_on 'linkedin_login'
+   # expect(page).to have_content('Chafity would like to access some of your LinkedIn info:')
+end
+
+Then(/^I should be redirected to linked$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When(/^I enter my 'email' and 'password'$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should be back on chafity dashboard$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
