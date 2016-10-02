@@ -20,5 +20,8 @@ When(/^I fill the form$/) do
   fill_in 'user_password' , with: '123456'
   fill_in 'user_password_confirmation', with: '123456'
   click_on 'Sign up'
+end
+
+Then(/^I should see my details$/) do
   expect(page).to have_content('Toni Parn')
 end
