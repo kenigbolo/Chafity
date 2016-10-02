@@ -43,6 +43,20 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  # This gem is only useful once assigns and assert_template have been removed from Rails.
+  # https://github.com/rails/rails-controller-testing#rspec
+  gem 'rails-controller-testing'
+  gem 'guard-rspec'
+  gem 'launchy'
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -58,8 +72,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'simple_form'
-gem "figaro"
+gem 'figaro'
 gem 'bootstrap-social-rails'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+gem 'faker'
+

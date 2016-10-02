@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928224533) do
+ActiveRecord::Schema.define(version: 20161001224642) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "message_body"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20160928224533) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "chickens", force: :cascade do |t|
+    t.string   "race"
+    t.string   "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
