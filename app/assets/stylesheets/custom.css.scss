@@ -58,7 +58,7 @@ $gray-medium-light: #eaeaea;
       height: 233px;
       overflow: hidden;
       margin-right: 10px;
-      margin-left: 30px;
+      margin-left: 10px;
       padding-top: 5px;
     }
 
@@ -115,7 +115,8 @@ $gray-medium-light: #eaeaea;
   font-weight: bold;
 
   h2{
-    font-size: 50px;
+    font-size: 40px;
+    text-align: center;
   }
 }
 /* navigation */
@@ -166,13 +167,46 @@ footer {
   }
 }
 
-//.input[type=text] {
-//  width: 30px;
-//  -webkit-transition: width 0.4s ease-in-out;
-//  transition: width 0.4s ease-in-out;
-//}
-//
-///* When the input field gets focus, change its width to 100% */
-//input[type=text]:focus {
-//  width: 100%;
-//}
+.user-profile{
+  margin-top: -10px;
+  padding-top: -5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  overflow: auto;
+  font-family: $chafity-font;
+
+  .profile-image{
+    margin-top: 21px;
+    border-radius: 50%;
+  }
+
+  .user-details{
+    float: left;
+    text-align: left;
+  }
+
+  .user-price{
+    float: right;
+    text-align: center;
+  }
+
+  .money{
+    font-size: 50px;
+    color: $chafity-orange;
+    font-family: $chafity-font;
+  }
+
+  .profile-texts{
+    padding-top: 2px;
+    text-align: left;
+    padding-right: -1px;
+    margin-right: -1px;
+    text-align: left;
+    overflow: hidden;
+    float: left;
+    h3{
+      font-size: 18px;
+    }
+  }
+}
+
