@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :appointments
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :users #, only: [:show, :edit, :update, :destroy]
   get 'auth/:provider/callback', to: 'sessions#create'
   root 'home#index'
+  get '/about', to: 'home#about'
 
 
 
