@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   root 'home#index'
   get '/about', to: 'home#about'
-
-
+  # get '/messages/new/:id', to: 'messages#new', as: :new_user_message
+  # post '/users/:id/messages', to: 'messages#create'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

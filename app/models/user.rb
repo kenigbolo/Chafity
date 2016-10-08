@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   extend FriendlyId
   mount_uploader :image, AvatarUploader
-  friendly_id :match_names , use: [:slugged, :finders]
+  friendly_id :match_names , use: [:slugged]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable

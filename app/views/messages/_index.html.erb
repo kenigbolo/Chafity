@@ -1,9 +1,19 @@
 <div class="container">
   <%- if @messages.nil? %>
-      <h2> oops nobody has donated yet</h2>
+      <h2> You have no sent messages in your inbox </h2>
    <%- else %>
-    <%- @messages.all.each do |message| %>
-    <%= message %>
+    <%- @messages.each do |message| %>
+    <%= message.message_body %>
     <%- end %>
   <%- end %>
 </div>
+
+
+<% @received.each do |message| %>
+    <p> Sender: <%= message.user.first_name %> </p>
+    <p> Message: <%= message.message_body %> </p>
+    <button>Message</button>
+    <button>Schedule</button>
+    <button>Accept</button>
+    <button>Decline</button>
+<% end %>
