@@ -10,7 +10,7 @@
       <%= link_to 'Register', new_user_registration_path , class: 'btn btn-lg landing-btn' , remote: false , id:'logon'  %>
     </div>
     <div class="col-md-12">
-      <%= button_to user_linkedin_omniauth_authorize_path, class: "btn btn-social btn-linkedin"  do %>
+      <%= button_to user_linkedin_omniauth_authorize_path, class: "btn btn-social btn-linkedin", id:'linkedin_login' do %>
           Login with Linkedin
           <span class="fa fa-linkedin"></span>
       <% end %>
