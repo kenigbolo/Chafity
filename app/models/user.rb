@@ -7,8 +7,11 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  validates_presence_of :email
+  # validates_presence_of :email , :image
   validates_uniqueness_of :email
+
+
+  has_many :messages
 
 
   def self.from_omniauth(auth)

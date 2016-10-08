@@ -11,14 +11,14 @@ When(/^I click on "([^"]*)"$/) do |arg1|
 end
 
 When(/^I fill the form$/) do
-  fill_in 'Email', with: 'toniparn@gmail.com'
+  fill_in 'Email', with: 'toniparn1@gmail.com'
   fill_in 'First name', with: 'Toni'
   fill_in 'Last name', with: 'Parn'
   fill_in 'Location', with: 'Tallinn'
   fill_in 'Headline', with: 'Business guy'
   fill_in 'Description', with: 'I like doing business'
-  fill_in 'user_password' , with: '123456'
-  fill_in 'user_password_confirmation', with: '123456'
+  fill_in 'user_password' , with: '1234567'
+  fill_in 'user_password_confirmation', with: '1234567'
   click_on 'Sign up'
 end
 
