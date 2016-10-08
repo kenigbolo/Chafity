@@ -1,0 +1,9 @@
+<div class="container">
+  <%- if @messages.nil? %>
+      <h2> oops nobody has donated yet</h2>
+   <%- else %>
+    <%- @messages.all.each do |message| %>
+    <%= message %>
+    <%- end %>
+  <%- end %>
+</div>
