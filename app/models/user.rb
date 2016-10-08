@@ -24,7 +24,7 @@ class User < ApplicationRecord
   	  user.location = auth.info.location
   	  user.headline = auth.info.headline
   	  user.description = auth.info.description
-  	  user.image = auth.info.image
+      user.remote_image_url = auth.info.image
   	  user.phone = auth.info.phone
   	  user.industry = auth.info.industry
   	  user.save
