@@ -7,7 +7,7 @@ end
 
 When(/^I click on "([^"]*)"$/) do |arg1|
   click_on arg1
-  expect(page).to have_content('Sign up')
+  expect(page).to have_content('Register')
 end
 
 When(/^I fill the form$/) do
