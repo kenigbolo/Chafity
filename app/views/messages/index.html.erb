@@ -1,0 +1,7 @@
+<div class="container">
+  <%- if @messages.last.nil? %>
+      <h2> Hummm nobody likes you</h2>
+      <%- else %>>
+  <%= @messages.last %>
+      <% end %>
+</div>
