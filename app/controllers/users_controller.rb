@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @messages = @user.messages.all
     @received = Message.where("receiver_id = ?", current_user.id)
+    @response = Response.new
   end
 
 end

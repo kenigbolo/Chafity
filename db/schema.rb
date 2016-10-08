@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008123556) do
+ActiveRecord::Schema.define(version: 20161008175146) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 20161008123556) do
     t.integer  "user_id"
     t.index ["appointment_date"], name: "index_messages_on_appointment_date"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_responses_on_message_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "schedule"
+    t.integer  "response_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["response_id"], name: "index_schedules_on_response_id"
   end
 
   create_table "users", force: :cascade do |t|

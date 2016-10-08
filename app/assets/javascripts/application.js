@@ -16,3 +16,22 @@
 // = require bootstrap
 //= require_tree .
 
+$(function() {
+    $( "#message_form").hide();
+    $( "#new_message" ).click(function() {
+        $("#message_form").show();
+        $("#new_reply").hide();
+        $("#message_options").hide();
+        $("#replies").hide();
+    });
+
+    $( "#cancel").click(function(){
+        $("#message_form").hide();
+        $("#new_message").show();
+    });
+
+    $( "#reply").click(function(){
+        $("#message_body").hide();
+        $("#new_reply").show();
+    });
+});

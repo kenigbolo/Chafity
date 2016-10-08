@@ -7,10 +7,15 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @user.messages.create(message_params)
-    @message.save
+    message = @user.messages.create(message_params)
+    message.save
     redirect_to request.referrer
-   end
+  end
+
+  def reply
+    @response = Response.new
+  end
+
   private
   def set_user
     @user = current_user
