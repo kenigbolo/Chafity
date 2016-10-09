@@ -3,11 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   extend FriendlyId
   mount_uploader :image, AvatarUploader
-  friendly_id :match_names , use: [:slugged]
+  friendly_id :slug_candidates , use: [:slugged]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  # validates_presence_of :email , :image
   validates_uniqueness_of :email
 
 
@@ -44,11 +43,6 @@ class User < ApplicationRecord
 
   def password_required?
   	super && provider.blank?
-  end
-
-
-  def match_names
-    names =  "#{self.first_name}.#{self.last_name}"
   end
 
   def slug_candidates
