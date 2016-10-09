@@ -38,6 +38,8 @@ gem 'bourbon', '~> 5.0.0.beta.5'
 # Gem for omniauth
 gem 'omniauth'
 gem 'omniauth-linkedin'
+# Gem for stripe Billing
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
