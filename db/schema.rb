@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928224533) do
+ActiveRecord::Schema.define(version: 20161009185054) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "message_body"
@@ -23,10 +23,13 @@ ActiveRecord::Schema.define(version: 20160928224533) do
 
   create_table "charities", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "minimum_amount"
-    t.decimal  "total_amount"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "address"
+    t.string   "total_amount"
+    t.string   "iban"
+    t.string   "registration_number"
+    t.string   "country"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -39,6 +42,35 @@ ActiveRecord::Schema.define(version: 20160928224533) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "sender_id"
+    t.string   "receiver_id"
+    t.string   "message_body"
+    t.boolean  "status",           default: false
+    t.datetime "appointment_date"
+    t.integer  "user_id"
+    t.index ["appointment_date"], name: "index_messages_on_appointment_date"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_responses_on_message_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "schedule"
+    t.integer  "response_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["response_id"], name: "index_schedules_on_response_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,8 +97,8 @@ ActiveRecord::Schema.define(version: 20160928224533) do
     t.string   "phone"
     t.string   "industry"
     t.string   "slug"
-    t.decimal  "donation_amount",        default: "0.0"
     t.decimal  "total_donated",          default: "0.0"
+    t.decimal  "donation_amount",        default: "5.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

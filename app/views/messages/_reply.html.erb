@@ -1,0 +1,5 @@
+<%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
+    <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
+    <%= f.input :body %>
+    <%= f.button :submit %>
+<% end %>
