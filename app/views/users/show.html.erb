@@ -37,11 +37,13 @@
     </div>
   </div>
 </div>
+
 <div class="container">
   <% if @user.id == current_user.id %>
   <%= render 'messages/index'  %>
       <% end %>
 </div>
+
 <div class="container">
   <% if @user.id != current_user.id %>
   <button id="new_message">Send Message</button>
@@ -58,3 +60,31 @@
     <% end %>
   </div>
 </div>
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Donate: $5.00</span>
+    </label>
+  </article>
+
+  <%= hidden_field_tag "amount", @user.donation_amount %>
+  <%= hidden_field_tag "desc", 'Donation from #{current_user.first_name} to #{@user.first_name} approved Charity' %>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe-checkout-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-label="Send Message"
+          data-amount= '<%= @user.donation_amount * 100 %>'
+          data-image='<%= image_url("logo.png")%>'
+          data-name="Chafity"
+          data-email= '<%= @user.email %>'
+          data-zip-code= "true"
+          data-currency= "eur"
+          data-shipping-address= "true"
+          data-locale="auto"></script>
+<% end %>
