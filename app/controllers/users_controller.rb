@@ -7,16 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id) if current_user
+    @user = User.friendly.find(params[:id])
+    @messages = @user.messages.all
+    @received = Message.where("receiver_id = ?", current_user.id)
+    @response = Response.new
   end
 
-  def edit
-  end
-
-
-  def update
-  end
-
-  def destroy
-  end
 end
