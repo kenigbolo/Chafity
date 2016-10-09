@@ -6,18 +6,15 @@ Rails.application.routes.draw do
       resources :responses
     end
   end
-# =======
-#   namespace :admin do
-#     resources :users
-# resources :appointments
-#
-#     root to: "users#index"
-#   end
-#
-#   resources :appointments
-#   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-#   resources :users #, only: [:show, :edit, :update, :destroy]
-# >>>>>>> 7dff8ee74dba592a711baff6b644624e68373896
+  namespace :admin do
+    resources :users
+    resources :messages
+
+    root to: "users#index"
+  end
+
+  resources :charges
+
   get 'auth/:provider/callback', to: 'sessions#create'
   root 'home#index'
   get '/about', to: 'home#about'
