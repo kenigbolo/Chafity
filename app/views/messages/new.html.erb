@@ -1,0 +1,5 @@
+<%= simple_form_for @message, url: new_user_message_path, method: :post do |f| %>
+    <%= f.input :sender_id, hidden: true, value: "#{current_user.email}" %>
+    <%= f.input :appointment_date %>
+    <%= f.button :submit %>
+<% end %>

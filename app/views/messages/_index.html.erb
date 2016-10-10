@@ -1,0 +1,18 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sent Messages</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Received Messages</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <%= render 'messages/sent_messages' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <%= render 'messages/received_messages' %>
+    </div>
+  </div>
+
+</div>

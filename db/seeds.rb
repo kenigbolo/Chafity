@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'factory_girl'
+# User.create! id: 5, email: "fotimutunda@hotmail.com", password:'123456', created_at: "2016-09-25 00:12:59", updated_at: "2016-09-25 00:14:28", provider: nil, uid: nil, first_name: "Fortunat", last_name: "Lufunda", location: nil, headline: nil, description: nil, image: nil, phone: nil, industry: nil
+# User.create! id: 6, email: "batman@batman.com", password:'123456', created_at: "#{Time.now}", updated_at: "#{Time.now + 1.day}", provider: nil, uid: nil, first_name: "Bat", last_name: "Man", location: nil, headline: nil, description: nil, image: nil, phone: nil, industry: nil
+# User.create! id: 7, email: "robbin@batman.com", password:'123456', created_at: "#{Time.now}", updated_at: "#{Time.now + 1.day}", provider: nil, uid: nil, first_name: "Rob", last_name: "bin", location: nil, headline: nil, description: nil, image: nil, phone: nil, industry: nil
+user = FactoryGirl.build(:user)
+User.create! email: user.email , password: user.password,first_name: user.first_name, last_name: user.last_name,
+             location: user.location, headline: user.headline, description: user.description, image: user.image,
+             industry: user.industry
+
+charity = FactoryGirl.build(:charity)
+Charity.create! name: charity.name, address: charity.address, total_amount: charity.total_amount,
+                iban: charity.iban, registration_number: charity.registration_number, country: charity.country
+
+puts "Seed was successful"

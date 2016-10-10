@@ -1,0 +1,39 @@
+<div class="col-md-4">
+  <div class="container" id="message_body">
+
+    <% @received.each do |message| %>
+        <p> Sender: <%= message.user.first_name %> </p>
+        <p> Message: <%= message.message_body %> </p>
+        <button id="reply">Reply</button>
+        <button id="schedule">Schedule</button>
+        <button id="accept">Accept</button>
+        <button id="decline">Decline</button>
+
+        <div class="container" id="replies">
+          <% if message.responses.nil? %>
+              <% message.responses.each do |response| %>
+                  <%= response.body %>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="container" id="new_reply">
+          <%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
+              <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
+              <%= f.input :body %>
+              <%= f.button :submit %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="container" id="message_options">
+    <div class="container" id="new_schedule">
+    </div>
+    <div class="container" id="confirm_accept">
+    </div>
+    <div class="container" id="confirm_decline">
+    </div>
+  </div>
+
+</div>
