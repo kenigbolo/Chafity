@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009185054) do
+ActiveRecord::Schema.define(version: 20161010040616) do
 
   create_table "charities", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20161009185054) do
     t.string   "country"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_charities_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -88,8 +90,10 @@ ActiveRecord::Schema.define(version: 20161009185054) do
     t.string   "phone"
     t.string   "industry"
     t.string   "slug"
-    t.decimal  "donation_amount",        default: "0.0"
     t.decimal  "total_donated",          default: "0.0"
+    t.decimal  "donation_amount",        default: "5.0"
+    t.integer  "charity_id"
+    t.index ["charity_id"], name: "index_users_on_charity_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

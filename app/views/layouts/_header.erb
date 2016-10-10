@@ -5,7 +5,7 @@
           <%= image_tag 'logo.png', size: '120x35', alt: 'Chafity' %>
       <% end %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-xs-8">
       <ul>
         <li>
           <%= link_to user_path current_user do %>
@@ -16,7 +16,7 @@
         <li>
           <%= form_tag users_path , method: :get do %>
             <%= text_field_tag :search , params[:search] , placeholder: 'search...' %>
-             <%= submit_tag 'Search',name: nil %>
+             <%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>
           <% end %>
         </li>
         <li>

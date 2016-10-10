@@ -1,27 +1,57 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-defualt">
+    <div class="panel panel-heading">
+      <div class="panel panel-title">
+        <h2>Update My details</h2>
+      </div>
+    </div>
+    <div class="panel-body">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-inline' }) do |f| %>
+          <%= f.error_notification %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+          <div class="form-inputs">
+            <div class="form-group">
+              <%= image_tag @user.image, size:'80x80' %>
+              <%= f.file_field :image , label: 'Avatar'%> <br> <br>
+            </div>
+            <div class="form-group">
+              <%= f.input :first_name, required: true, value: "#{@user.first_name}" %>
+              <%= f.input :last_name, required:true, value: "#{@user.last_name}" %> <br>
+            </div>
+            <div class="form-group">
+              <%= f.input :headline, value: "#{@user.headline}" %>
+              <%= f.country_select :location, include_blank: true, value: "#{@user.location}", as: :select, class: 'form-control' %>
+              <%= f.input :description, value: "#{@user.description}" %>
+              <%= f.input :industry, value: "#{@user.industry}" %>
+            </div>
+            <div class="form-group">
+              <%= f.input :email, required: true, autofocus: true %>
+            </div>
+            <div class="form-group">
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <% end %>
+            </div>
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+            <div class="from-group">
+              <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+              <%= f.input :password_confirmation, required: false %>
+              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Update" %>
+          </div>
+      <% end %>
+
+      <h3>Cancel my account</h3>
+
+      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      <%= link_to "Back", :back %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

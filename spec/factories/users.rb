@@ -8,5 +8,6 @@ FactoryGirl.define do
     f.image {Faker::Placeholdit.image("80x80")}
     f.email {Faker::Internet.email}
     f.password {Faker::Internet.password}
+    f.industry {Faker::Company.name}
   end
 end

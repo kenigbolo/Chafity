@@ -86,4 +86,5 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'faker'
+gem 'country_select'
 

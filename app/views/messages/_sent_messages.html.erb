@@ -1,0 +1,9 @@
+<div class="container">
+  <%- if @messages.nil? %>
+      <h2> You have no sent messages in your inbox </h2>
+  <%- else %>
+      <%- @messages.each do |message| %>
+          <%= message.message_body %>
+      <%- end %>
+  <%- end %>
+</div>

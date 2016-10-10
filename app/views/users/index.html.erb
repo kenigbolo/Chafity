@@ -1,4 +1,35 @@
+<hr>
 <% @users.each do |user| %>
-    <%= user.first_name %>
-    <%= user.last_name %>
+    <% if user.id != current_user.id %>
+
+    <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-2">
+        <%= image_tag user.image, size: '80x80', class: 'search-image' %>
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-4">
+          <h3>
+          <%= user.first_name %>
+          <%= user.last_name %>
+          </h3>
+        </div>
+        <div class="col-md-4">
+          <p>
+          Location: <%= user.location %>
+          Headline: <%= user.headline %>
+          Charity: <%= @charity %>>
+          </p>
+        </div>
+        <div class="col-md-4">
+           <%= user.industry %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <p>
+        Donate: <%= user.donation_amount %>
+        <span><%= link_to "Contact", user_path(user) %></span>
+        </p>
+      </div>
+    </div>
+    <% end %>
 <% end %>
