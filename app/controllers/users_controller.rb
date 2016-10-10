@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @charity = Charity.find(1)
     @messages = @user.messages.all
-    @received = Message.where("receiver_id = ?", current_user.id)
+    @received = Message.where("receiver_id = ?", current_user.id.to_s)
     @response = Response.new
   end
 
