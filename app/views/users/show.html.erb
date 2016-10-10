@@ -10,78 +10,61 @@
         <%= @user.last_name  %>
       </h2>
       <h3>
-        <%= @user.headline  %> <br>
-        <%= @user.description %>
+        Headline: <%= @user.headline  %> <br>
+        Position: <%= @user.description %>
       </h3>
-      <span ><%= link_to 'Edit Accout', edit_user_registration_path %></span>
+      <% if @user.id == current_user.id %>
+          <span ><%= link_to 'Edit Accout', edit_user_registration_path %></span>
+      <% end %>
     </div>
   </div>
   <!--Price tag -->
   <div class="col-md-4 user-price">
     <div class="col-md-6">
       <p>Price Tag</p>
-      <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 3, unit: '€')%></h2>
+      <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 1, unit: '€')%></h2>
     </div>
     <div class="col-md-6">
       <p>Total Donated</p>
-      <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 3, unit: '€') %></h2>
+      <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 1, unit: '€') %></h2>
     </div>
   </div>
-
-  <div class="container">
-    <% if @user.id == current_user.id %>
-        <% if @user.messages != nil %>
-            <% @user.messages.each do |message| %>
-                <%= message.message_body %>
-            <% end %>
-        <% end %>
-    <% end %>
-  </div>
-
 </div>
-
+<!--messages -->
 <div class="container">
   <% if @user.id == current_user.id %>
       <%= render 'messages/index'  %>
   <% end %>
 </div>
 
+<div class="col-md-4 col-md-offset-4">
+  <% if @user.id != current_user.id %>
+      <% unless session["payment"] == "succeeded" %>
+          <div class="container" id="charges_form">
+            <%= form_tag charges_path do %>
+                <article>
+                  <% if flash[:error].present? %>
+                      <div id="error_explanation">
+                        <p><%= flash[:error] %></p>
+                      </div>
+                  <% end %>
+                  <label class="amount">
+                    <span>Donate: <%= number_to_currency @user.donation_amount, precision: 1, unit: '€' %></span>
+                  </label>
+                </article>
 
+                <%= hidden_field_tag "amount", @user.donation_amount %>
+                <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{@user.first_name} approved Charity" %>
+                <%= hidden_field_tag "id", @user.id %>
 
-<% if @user.id != current_user.id %>
-    <% unless session["payment"] == "succeeded" %>
-        <div class="container" id="charges_form">
-          <%= form_tag charges_path do %>
-              <article>
-                <% if flash[:error].present? %>
-                    <div id="error_explanation">
-                      <p><%= flash[:error] %></p>
-                    </div>
-                <% end %>
-                <label class="amount">
-                  <span>Donate: $5.00</span>
-                </label>
-              </article>
+                <%= render 'stripe-checkout' %>
+            <% end %>
+          </div>
+      <% end %>
+  <% end %>
 
-              <%= hidden_field_tag "amount", @user.donation_amount %>
-              <%= hidden_field_tag "desc", 'Donation from #{current_user.first_name} to #{@user.first_name} approved Charity' %>
-              <%= hidden_field_tag "id", @user.id %>
+</div>
 
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe-checkout-button"
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-label="Send Message"
-                      data-amount= '<%= @user.donation_amount * 100 %>'
-                      data-image='<%= image_url("logo.png")%>'
-                      data-name="Chafity"
-                      data-email= '<%= @user.email %>'
-                      data-zip-code= "true"
-                      data-currency= "eur"
-                      data-shipping-address= "true"
-                      data-locale="auto"></script>
-          <% end %>
-        </div>
-    <% end %>
-<% end %>
 
 
 <% if session["payment"] == "succeeded" %>

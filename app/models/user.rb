@@ -7,10 +7,17 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
   validates_uniqueness_of :email
+
+  before_save do
+    self.first_name.capitalize
+    self.last_name.capitalize
+  end
 
 
   has_many :messages
+  belongs_to :charity
 
 
   def self.from_omniauth(auth)
@@ -48,14 +55,14 @@ class User < ApplicationRecord
   def slug_candidates
     [
         [:first_name, :last_name],
-        [:first_name, :last_name,:id]
+        [:first_name, :last_name,self.id]
     ]
   end
 
 # TODO: this method is to be update as well
 	def self.search(search)
     if search
-      User.where('first_name = ? OR last_name = ?', search, search)
+      User.where('first_name = ? OR last_name = ?', search.capitalize, search.capitalize)
     else
       User.all
     end

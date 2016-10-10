@@ -1,31 +1,34 @@
+<hr>
 <% @users.each do |user| %>
-    <div class="search-box">
-      <div class="container">
-        <div class="col-md-2">
-          <%= image_tag user.image, size: '80x80', class: 'search-image' %>
-        </div>
-        <div class="col-md-3">
-          <h2>
-            <%= user.first_name %>
-            <%= user.last_name %>
-          </h2>
-        </div>
-        <div class="col-md-3">
+    <% if user.id != current_user.id %>
+
+    <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-2">
+        <%= image_tag user.image, size: '80x80', class: 'search-image' %>
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-4">
           <h3>
-          <%= user.location %>
-          <%= user.headline %>
-          <%= user.industry %>
+          <%= user.first_name %>
+          <%= user.last_name %>
           </h3>
         </div>
-        <div class="col-md-3">
-          <h4>
-            <%= user.donation_amount %>
-            <%= user.total_donated %>
-          </h4>
-          <span>
-            <%= link_to 'Contact', user_path(user) %>
-          </span>
+        <div class="col-md-4">
+          <p>
+          Location: <%= user.location %>
+          Headline: <%= user.headline %>
+          </p>
+        </div>
+        <div class="col-md-4">
+           <%= user.industry %>
         </div>
       </div>
+      <div class="col-md-2">
+        <p>
+        Donate: <%= user.donation_amount %>
+        <span><%= link_to "Contact", user_path(user) %></span>
+        </p>
+      </div>
     </div>
+    <% end %>
 <% end %>
