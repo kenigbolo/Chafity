@@ -2,9 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   extend FriendlyId
-  mount_uploader :image, AvatarUploader
-  friendly_id :slug_candidates , use: [:slugged]
+  friendly_id :slug_candidates , use: [:slugged, :finders]
 
+  mount_uploader :image, AvatarUploader
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
@@ -19,6 +20,9 @@ class User < ApplicationRecord
   has_many :messages
   belongs_to :charity
 
+  def should_generate_new_friendly_id?
+    false if Rails.env.production?
+  end
 
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
