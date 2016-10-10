@@ -38,6 +38,8 @@ gem 'bourbon', '~> 5.0.0.beta.5'
 # Gem for omniauth
 gem 'omniauth'
 gem 'omniauth-linkedin'
+# Gem for stripe Billing
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -84,4 +86,5 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'faker'
+gem 'country_select'
 
