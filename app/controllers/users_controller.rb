@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if params[:search]
     @users = User.search(params[:search])
     else
+      @users = User.all
       render :index
     end
   end

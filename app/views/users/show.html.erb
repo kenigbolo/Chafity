@@ -11,7 +11,8 @@
       </h2>
       <h3>
         Headline: <%= @user.headline  %> <br>
-        Position: <%= @user.description %>
+        Position: <%= @user.description %> <br>
+        Charity: <%= @charity.name %>
       </h3>
       <% if @user.id == current_user.id %>
           <span ><%= link_to 'Edit Accout', edit_user_registration_path %></span>
@@ -37,7 +38,7 @@
   <% end %>
 </div>
 
-<div class="col-md-4 col-md-offset-4">
+<div class="">
   <% if @user.id != current_user.id %>
       <% unless session["payment"] == "succeeded" %>
           <div class="container" id="charges_form">
