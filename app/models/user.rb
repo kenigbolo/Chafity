@@ -62,7 +62,7 @@ class User < ApplicationRecord
 # TODO: this method is to be update as well
 	def self.search(search)
     if search
-      User.where('first_name = ? OR last_name = ?', search.capitalize, search.capitalize)
+      User.where('first_name Like ? OR last_name Like ?', search.capitalize, search.capitalize)
     else
       User.all
     end

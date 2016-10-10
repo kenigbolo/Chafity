@@ -65,19 +65,21 @@
 
 </div>
 
+<div class="col-md-4 col-offset-4">
+  <% if session["payment"] == "succeeded" %>
+      <% session["payment"] = " " %>
+      <div class="container">
+        <%= simple_form_for current_user.messages.build, url: user_messages_path(current_user.id), method: :post do |f| %>
+            <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
+            <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{@user.id}"} %>
+            <%= f.input :message_body, as: :text %>
+            <%= f.input :appointment_date %>
+            <%= f.button :submit %>
+        <% end %>
+        <button id="cancel">Cancel</button>
+      </div>
+  <% end %>
 
+</div>
 
-<% if session["payment"] == "succeeded" %>
-    <% session["payment"] = " " %>
-    <div class="container">
-      <%= simple_form_for current_user.messages.build, url: user_messages_path(current_user.id), method: :post do |f| %>
-          <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
-          <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{@user.id}"} %>
-          <%= f.input :message_body, as: :text %>
-          <%= f.input :appointment_date %>
-          <%= f.button :submit %>
-      <% end %>
-      <button id="cancel">Cancel</button>
-    </div>
-<% end %>
 
