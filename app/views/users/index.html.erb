@@ -1,35 +1,44 @@
-<hr>
+<br>
+<br>
 <% @users.each do |user| %>
-    <% if user.id != current_user.id %>
+<% if user.id != current_user.id %>
 
-    <div class="col-md-offset-2 col-md-8">
-      <div class="col-md-2">
+<div class="col-md-offset-2 col-md-8">
+    <div class="col-md-2">
         <%= image_tag user.image, size: '80x80', class: 'search-image' %>
-      </div>
-      <div class="col-md-8">
-        <div class="col-md-4">
-          <h3>
-          <%= user.first_name %>
-          <%= user.last_name %>
-          </h3>
-        </div>
-        <div class="col-md-4">
-          <p>
-          Location: <%= user.location %>
-          Headline: <%= user.headline %>
-          Charity: <%= @charity %>>
-          </p>
-        </div>
-        <div class="col-md-4">
-           <%= user.industry %>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <p>
-        Donate: <%= user.donation_amount %>
-        <span><%= link_to "Contact", user_path(user) %></span>
-        </p>
-      </div>
     </div>
-    <% end %>
+    <div class="col-md-8">
+        <div class="col-md-4">
+            <h3>
+                <%= user.first_name %>
+                <%= user.last_name %>
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <p>
+                Location:
+                <%= user.location %>
+                <!-- Headline: <%= user.headline %> -->
+                <% @charities.each do |charity| %>
+                <% if charity.user_id == user.id  %>
+                Charity:
+                <%= charity.name %>
+                <%end%>
+                <%end%>
+            </p>
+        </div>
+        <div class="col-md-4">
+            Industrie:
+            <%= user.industry %>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <p>
+            Donate:
+            <%= user.donation_amount %>
+            <span><%= link_to "Contact", user_path(user) %></span>
+        </p>
+    </div>
+</div>
+<% end %>
 <% end %>
