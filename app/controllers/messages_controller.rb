@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
       redirect_to request.referrer
     else
      # TODO: hummmm
+    end
   end
 
   def reply
