@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # administrate gem for rails administrate
 gem 'administrate', github: 'greetpoint/administrate', branch: 'rails5'
-gem 'bourbon', '~> 5.0.0.beta.5' 
+gem 'bourbon', '~> 5.0.0.beta.5'
 
 
 
@@ -87,4 +87,4 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'faker'
 gem 'country_select'
-
+gem 'pg_search'

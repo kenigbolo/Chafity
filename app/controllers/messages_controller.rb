@@ -7,9 +7,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = @user.messages.create(message_params)
-    message.save
-    redirect_to request.referrer
+    @message = @user.messages.new(message_params)
+    if @message.save
+      flash[:success] = "Message sent"
+      redirect_to request.referrer
+    else
+     # TODO: hummmm
   end
 
   def reply
@@ -26,4 +29,3 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:sender_id, :receiver_id, :message_body, :appointment_date)
     end
 end
-

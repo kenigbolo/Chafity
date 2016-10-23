@@ -1,4 +1,5 @@
-<hr>
+<br>
+<br>
 <% @users.each do |user| %>
     <% if user.id != current_user.id %>
 
@@ -16,12 +17,16 @@
         <div class="col-md-4">
           <p>
           Location: <%= user.location %>
-          Headline: <%= user.headline %>
-          Charity: <%= @charity %>>
+          <!-- Headline: <%= user.headline %> -->
+          <% @charities.each do |charity| %>
+            <% if charity.user_id == user.id  %>
+            Charity: <%= charity.name %>
+            <%end%>
+          <%end%>
           </p>
         </div>
         <div class="col-md-4">
-           <%= user.industry %>
+          Industrie: <%= user.industry %>
         </div>
       </div>
       <div class="col-md-2">
