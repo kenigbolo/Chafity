@@ -71,8 +71,70 @@ RSpec.describe Message, type: :model do
 		end
 
 		it "should not be a valid message" do
-			expect(@message).to be_valid
+			expect(@message).not_to be_valid
+		end
+	end
+
+	context "when message doesn't have appointment_date" do
+		before do
+			@message = Message.new
+	  	@message.id = 4
+			@message.created_at = "2016-10-10 10:40:07"
+			@message.updated_at = "2016-10-10 10:40:07"
+			@message.sender_id = "6"
+			@message.receiver_id = "4"
+			@message.message_body = "Why can't I send messages?!?!?!"
+		end
+
+		it "is a new message" do
+			expect(@message).to be_a_new(Message)
+		end
+
+		it "should not be a valid message" do
+			expect(@message).not_to be_valid
+		end
+	end
+
+	context "when message doesn't have sender_id" do
+		before do
+			@message = Message.new
+	  	@message.id = 5
+			@message.created_at = "2015-01-01 00:00:01"
+			@message.updated_at = "2016-01-01 00:00:01"
+			@message.receiver_id = "6"
+			@message.message_body = "Let's talk next year"
+			@message.appointment_date = "2017-01-01 00:00:01"
+		end
+
+		it "is a new message" do
+			expect(@message).to be_a_new(Message)
+		end
+
+		it "should not be a valid message" do
+			expect(@message).not_to be_valid
+		end
+	end
+
+	context "when message doesn't have created_at date" do
+		before do
+
+			@message = Message.new
+	  	@message.id = 5
+			@message.updated_at = "2016-01-01 00:00:01"
+			@message.sender_id = "2"
+			@message.receiver_id = "6"
+			@message.message_body = "Let's talk next year"
+			@message.appointment_date = "2017-01-01 00:00:01"
+		end
+
+		it "is a new message" do
+			expect(@message).to be_a_new(Message)
+		end
+
+		it "should not be a valid message" do
+			expect(@message).not_to be_valid
 		end
 	end
 
 end
+
