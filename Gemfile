@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record in development
-gem 'sqlite3', group: :development
+# gem 'sqlite3', group: :development
 # Use pg as the database for Active Record in production
-gem 'pg', '0.18.1', group: :production
+gem 'pg', '0.18.1', group: [:production, :development, :test]
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -59,7 +59,6 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
-  gem 'rspec-autotest'
 end
 
 group :test do
