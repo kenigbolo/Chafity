@@ -7,7 +7,7 @@ RSpec.describe Message, type: :model do
 
 		before do
 			@message = Message.new
-	  	@message.id = 1
+	  		@message.id = 1
 			@message.sender_id = "1"
 			@message.receiver_id = "2"
 			@message.message_body = "I want to talk to you!!!"
@@ -34,10 +34,11 @@ RSpec.describe Message, type: :model do
 	context "when message doesn't have receiver_id" do
 		before do
 			@message = Message.new
-	  	@message.id = 2
+	  		@message.id = 2
 			@message.sender_id = "1"
 			@message.message_body = "Another message"
 			@message.appointment_date = "2016-10-25 14:10:00"
+			@message.save
 		end
 
 		it "is a new message" do
@@ -56,6 +57,7 @@ RSpec.describe Message, type: :model do
 			@message.sender_id = "6"
 			@message.receiver_id = "4"
 			@message.appointment_date = "2016-07-20 01:00:00"
+			@message.save
 		end
 
 		it "is a new message" do
@@ -70,10 +72,11 @@ RSpec.describe Message, type: :model do
 	context "when message doesn't have appointment_date" do
 		before do
 			@message = Message.new
-	  	@message.id = 4
+	  		@message.id = 4
 			@message.sender_id = "6"
 			@message.receiver_id = "4"
 			@message.message_body = "Why can't I send messages?!?!?!"
+			@message.save
 		end
 
 		it "is a new message" do
@@ -92,6 +95,7 @@ RSpec.describe Message, type: :model do
 			@message.receiver_id = "6"
 			@message.message_body = "Let's talk next year"
 			@message.appointment_date = "2017-01-01 00:00:01"
+			@message.save
 		end
 
 		it "is a new message" do
