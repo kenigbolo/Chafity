@@ -9,12 +9,15 @@ class MessagesController < ApplicationController
   def create
     @message = @user.messages.new(message_params)
     if @message.save
-      flash[:success] = 'Message sent'
+      flash[:notice] = "Successfully created..."
       redirect_to request.referrer
     else
-      respond_to do |format|
-        format.js { render inline: 'location.reload();' }
-      end
+      flash[:notice] = "Successfully created..."
+      # respond_to do |format|
+      #   format.js do
+      #     render inline: 'location.reload();'
+      #   end
+      # end
     end
   end
 
@@ -30,7 +33,7 @@ class MessagesController < ApplicationController
 
   def message_params
     params
-      .require(:message)
-      .permit(:sender_id, :receiver_id, :message_body, :appointment_date)
+    .require(:message)
+    .permit(:sender_id, :receiver_id, :message_body, :appointment_date)
   end
 end
