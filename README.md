@@ -18,8 +18,9 @@ Once you have those two, you can then run your command line and navigate into th
  
 
     ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
-* Run `rails db:migrate` or `rake db:migrate`
-* Run `rails db:seed`  or `rake db:seed` to seed the `db` if ne cessary.
+* Run `rails db:setup` to set up the db, run the migrattions and seed the db all at once. or,
+* Run `rails db:migrate` or `rake db:migrate` and then,
+* Run `rails db:seed`  or `rake db:seed`.
 
 (*the `rake` command was used for rails version prior rails 5. But it is no logner required*)
 
