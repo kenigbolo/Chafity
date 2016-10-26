@@ -2,7 +2,6 @@
 <br>
 <% @users.each do |user| %>
 <% if user.id != current_user.id %>
-
 <div class="col-md-offset-2 col-md-8">
     <div class="col-md-2">
         <%= image_tag user.image, size: '80x80', class: 'search-image' %>
