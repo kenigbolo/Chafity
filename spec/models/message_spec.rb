@@ -8,8 +8,6 @@ RSpec.describe Message, type: :model do
 		before do
 			@message = Message.new
 	  	@message.id = 1
-			@message.created_at = "2016-10-22 14:34:00"
-			@message.updated_at = "2016-10-22 14:34:00"
 			@message.sender_id = "1"
 			@message.receiver_id = "2"
 			@message.message_body = "I want to talk to you!!!"
@@ -25,8 +23,6 @@ RSpec.describe Message, type: :model do
 		end
 
 		it "is expected to save message properly" do
-			expect(@message.created_at).to eq("2016-10-22 14:34:00")
-			expect(@message.updated_at).to eq("2016-10-22 14:34:00")
 			expect(@message.sender_id).to eq("1")
 			expect(@message.receiver_id).to eq("2")
 			expect(@message.message_body).to eq("I want to talk to you!!!")
@@ -39,8 +35,6 @@ RSpec.describe Message, type: :model do
 		before do
 			@message = Message.new
 	  	@message.id = 2
-			@message.created_at = "2016-10-22 14:25:02"
-			@message.updated_at = "2016-10-22 14:26:33"
 			@message.sender_id = "1"
 			@message.message_body = "Another message"
 			@message.appointment_date = "2016-10-25 14:10:00"
@@ -58,9 +52,7 @@ RSpec.describe Message, type: :model do
 	context "when message doesn't have body" do
 		before do
 			@message = Message.new
-	  	@message.id = 3
-			@message.created_at = "2016-05-10 22:22:00"
-			@message.updated_at = "2016-06-10 14:37:03"
+	  	    @message.id = 3
 			@message.sender_id = "6"
 			@message.receiver_id = "4"
 			@message.appointment_date = "2016-07-20 01:00:00"
@@ -79,8 +71,6 @@ RSpec.describe Message, type: :model do
 		before do
 			@message = Message.new
 	  	@message.id = 4
-			@message.created_at = "2016-10-10 10:40:07"
-			@message.updated_at = "2016-10-10 10:40:07"
 			@message.sender_id = "6"
 			@message.receiver_id = "4"
 			@message.message_body = "Why can't I send messages?!?!?!"
@@ -98,9 +88,7 @@ RSpec.describe Message, type: :model do
 	context "when message doesn't have sender_id" do
 		before do
 			@message = Message.new
-	  	@message.id = 5
-			@message.created_at = "2015-01-01 00:00:01"
-			@message.updated_at = "2016-01-01 00:00:01"
+	  		@message.id = 5
 			@message.receiver_id = "6"
 			@message.message_body = "Let's talk next year"
 			@message.appointment_date = "2017-01-01 00:00:01"
@@ -115,6 +103,35 @@ RSpec.describe Message, type: :model do
 		end
 	end
 
+	context "When user creates a message" do
+		before do
+			user = User.create!(id: 1,
+				provider: 'google',
+				uid: '1234',
+				email: 'someone@something.com',
+				first_name: 'Someone',
+				last_name: 'Important',
+				location: 'Tartu',
+				headline: 'something random',
+				description: 'hjk',
+				industry: 'something'
+				)
 
+			@message = user.messages.create!(message_body: 'I am toni', 
+				sender_id: '1',
+				receiver_id: '2',
+				appointment_date: Time.now,
+				)
+		end
+
+		it "should be valid" do
+			expect(@message).to be_valid
+		end
+
+		it "should be sent by user with id 1" do
+			expect(@message.user_id).to eq(1)
+		end
+
+	end
 end
 
