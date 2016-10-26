@@ -1,5 +1,5 @@
+# This is the message controller rubocop
 class MessagesController < ApplicationController
-
   before_action :set_user, :authenticate_user!
 
   def new
@@ -9,10 +9,15 @@ class MessagesController < ApplicationController
   def create
     @message = @user.messages.new(message_params)
     if @message.save
-      flash[:success] = "Message sent"
+      flash[:notice] = "Successfully created..."
       redirect_to request.referrer
     else
-     # TODO: hummmm
+      flash[:notice] = "Successfully created..."
+      # respond_to do |format|
+      #   format.js do
+      #     render inline: 'location.reload();'
+      #   end
+      # end
     end
   end
 
@@ -21,12 +26,14 @@ class MessagesController < ApplicationController
   end
 
   private
+
   def set_user
     @user = current_user
   end
 
-  private
-    def message_params
-      params.require(:message).permit(:sender_id, :receiver_id, :message_body, :appointment_date)
-    end
+  def message_params
+    params
+    .require(:message)
+    .permit(:sender_id, :receiver_id, :message_body, :appointment_date)
+  end
 end

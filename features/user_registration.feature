@@ -1,3 +1,4 @@
+
 Feature:
   Scenario: A user can successfully create an account on Chafity
     Given I am at the 'index' page

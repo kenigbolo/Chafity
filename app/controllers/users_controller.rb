@@ -5,8 +5,9 @@ class UsersController < ApplicationController
     @charities = Charity.all
     if params[:search].present?
       @users = User.search(params[:search])
+      @users.order(:first_name)
     else
-      @users = User.all.order(:first_name)
+      @users = User.order(:first_name)
       render :index
     end
   end
@@ -18,5 +19,4 @@ class UsersController < ApplicationController
     @received = Message.where(receiver_id: current_user.id)
     @response = Response.new
   end
-
 end
