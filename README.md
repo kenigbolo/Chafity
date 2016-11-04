@@ -1,5 +1,5 @@
 # CHAFITY
-[![Build Status](https://travis-ci.org/kenigbolo/Chafity.png)](https://travis-ci.org/kenigbolo/Chafity) [![CircleCI](https://circleci.com/gh/kenigbolo/Chafity/tree/master.svg?style=svg&circle-token=5dc953df472e42d2b6ea55bc719cabb0ade4bcaf)](https://circleci.com/gh/kenigbolo/Chafity/tree/master)
+[![Build Status](https://travis-ci.org/kenigbolo/Chafity.png)](https://travis-ci.org/kenigbolo/Chafity)
 
 Chafity is a charity media platform meant for networking and connecting people in order to make business as well as donate to charity. Users of this platform will define the amount that needs to be donated to their chosen charity fund when another user wishes to connect with them. Once the contact request is sent, the donation will be deducted from one’s credit card however the donation is only transferred to the charity’s bank account only when the request is accepted and contact has been made and confirmed.
 
@@ -10,9 +10,10 @@ Chafity is a charity media platform meant for networking and connecting people i
 ##Dependencies
 
 * Ruby version 2.2.1 and above
-* rails 5.0.0
+* Rails 5.0.0
+* Imagemagick (Linux distributions) or RMagic (OSX)
 
-Once you have those two, you can then run your command line and navigate into the project's folder and then run:
+Once you have all the dependencies, you can then run your command line and navigate into the project's folder and then run:
 
 * Run `bundle install` to install all other dependencies
  
@@ -27,7 +28,7 @@ Once you have those two, you can then run your command line and navigate into th
 
 Due to the use of the `figaro gem` for environment variables used in omniauth the following should be performed when running locally
 
-* Download the application.yml file [here]()
+* To download the application.yml file kindly contact the administrator
 * Put the downloaded `application.yml` file into the `config` folder
 
 You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*) 
