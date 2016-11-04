@@ -1,3 +1,4 @@
+
 Feature:
   Scenario: A user can successfully create an account on Chafity
     Given I am at the 'index' page
@@ -9,6 +10,6 @@ Feature:
 #    Given I am at the 'index' page
 #    When I click on 'Login with linkedin'
 #    Then I should be redirected to linked
-#    When I enter my 'email' and 'password'
-#    And I click on "Allow access"
-#    Then I should be back on chafity dashboard
+##    When I enter my 'email' and 'password'
+##    And I click on "Allow access"
+##    Then I should be back on chafity dashboard
