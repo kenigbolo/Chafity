@@ -16,7 +16,11 @@ Chafity is a charity media platform meant for networking and connecting people i
 Once you have all the dependencies, you can then run your command line and navigate into the project's folder and then run:
 
 * Run `bundle install` to install all other dependencies
- 
+
+Alternatively you can run our automated script by doing the followinf
+
+* Give the script execution permissions by running `chmod +x install.sh`
+* Run `./install.sh` to install all other dependencies 
 
     ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
 * Run `rails db:migrate` or `rake db:migrate`
