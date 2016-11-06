@@ -86,8 +86,4 @@ class User < ApplicationRecord
       super
     end
   end
-
-  def is_admin?
-    self.admin
-  end
 end
