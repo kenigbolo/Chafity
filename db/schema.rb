@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106211009) do
+ActiveRecord::Schema.define(version: 20161106214442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20161106211009) do
     t.integer  "user_id"
     t.index ["appointment_date"], name: "index_messages_on_appointment_date", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "status",         null: false
+    t.string   "transaction_id", null: false
+    t.integer  "message",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -114,6 +124,7 @@ ActiveRecord::Schema.define(version: 20161106211009) do
 
   add_foreign_key "charities", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "responses", "messages"
   add_foreign_key "schedules", "responses"
   add_foreign_key "users", "charities"

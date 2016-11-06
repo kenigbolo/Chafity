@@ -26,14 +26,13 @@ class MessagesController < ApplicationController
   end
 
   private
+    def set_user
+      @user = current_user
+    end
 
-  def set_user
-    @user = current_user
-  end
-
-  def message_params
-    params
-    .require(:message)
-    .permit(:sender_id, :receiver_id, :message_body, :appointment_date)
-  end
+    def message_params
+      params
+      .require(:message)
+      .permit(:sender_id, :receiver_id, :message_body, :appointment_date)
+    end
 end
