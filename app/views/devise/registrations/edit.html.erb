@@ -11,26 +11,36 @@
             <%= f.error_notification %>
 
             <div class="form-inputs">
-                <div class="form-group">
+                <div class="form-group center-block">
                     <%= image_tag @user.image, size:'80x80' %>
                     <%= f.file_field :image , label: 'Avatar'%>
                     <br>
                     <br>
                 </div>
+                <br>
                 <div class="form-group">
+                    <br>
                     <%= f.input :first_name, required: true, value: "#{@user.first_name}" %>
+                    <br>
                     <%= f.input :last_name, required:true, value: "#{@user.last_name}" %>
                     <br>
+                    <br>
                 </div>
+                <br>
                 <div class="form-group">
                     <%= f.input :headline, value: "#{@user.headline}" %>
+                    <br>
                     <%= f.country_select :location, include_blank: true, value: "#{@user.location}", as: :select, class: 'form-control' %>
+                    <br>
                     <%= f.input :description, value: "#{@user.description}" %>
+                    <br>
                     <%= f.input :industry, value: "#{@user.industry}" %>
                 </div>
+                <br>
                 <div class="form-group">
                     <%= f.input :email, required: true, autofocus: true %>
                 </div>
+                <br>
                 <div class="form-group">
                     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <p>Currently waiting confirmation for:
@@ -41,9 +51,11 @@
 
                 <div class="from-group">
 
-                    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                    <%= f.input :password, autocomplete: "off", hint: "Please leave it blank if you don't want to change it", required: false %>
+                    <br>
                     <%= f.input :password_confirmation, required: false %>
-                    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: false %>
+                    <br>
+                    <%= f.input :current_password, hint: 'We need your current password to confirm your changes', required: false %>
                 </div>
             </div>
             <%end%>
@@ -59,6 +71,7 @@
             </div><br>
 
             <!--             <div class="from-group">
+
               <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
               <%= f.input :password_confirmation, required: false %>
               <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
@@ -69,6 +82,7 @@
             <%= f.button :submit, "Update" %>
         </div>
         <% end %>
+          <br>
         <h3>Cancel my account</h3>
 
         <p>Unhappy?
