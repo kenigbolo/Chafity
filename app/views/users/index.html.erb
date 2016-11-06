@@ -1,43 +1,73 @@
-<br>
-<br>
-<% @users.each do |user| %>
-<% if user.id != current_user.id %>
-<div class="col-md-offset-2 col-md-8">
-    <div class="col-md-2">
-        <%= image_tag user.image, size: '80x80', class: 'search-image' %>
+<div class="row">
+    <div class="col-md-3">
+        <aside class="">
+            aside
+        </aside>
     </div>
-    <div class="col-md-8">
-        <div class="col-md-4">
-            <h3>
-                <%= user.first_name %>
-                <%= user.last_name %>
-            </h3>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <%= form_tag users_path , method: :get do %>
+                <%= text_field_tag :search , params[:search] , placeholder: 'search...' %>
+                <%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>
+                <% end %>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p>
-                Location:
-                <%= user.location %>
-                <!-- Headline: <%= user.headline %> -->
-                <% @charities.each do |charity| %>
-                <% if charity.user_id == user.id  %>
-                Charity:
-                <%= charity.name %>
-                <%end%>
-                <%end%>
-            </p>
-        </div>
-        <div class="col-md-4">
-            Industrie:
-            <%= user.industry %>
-        </div>
-    </div>
-    <div class="col-md-2">
-        <p>
-            Donate:
-            <%= user.donation_amount %>
-            <span><%= link_to "Contact", user_path(user) %></span>
-        </p>
+
+        <% @users.each do |user| %>
+          <% if user.id != current_user.id %>
+          <div style="background-color:rgba(58, 74, 81, 0.15);;margin-top:5px">
+            <div class="row" style="padding-top: 50px">
+              <div class="col-md-2 col-md-offset-1">
+                  <%= image_tag ('logo.png'), size: '80x80', class: 'search-image ui circular' %>
+              </div>
+              <div class="col-md-6">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <h3>
+                              <%= user.first_name %>
+                              <%= user.last_name %>
+                          </h3>
+                      </div>
+                      <div class="col-md-6">
+                          <p>
+                              Location:
+                              <%= user.location %>
+                              <!-- Headline: <%= user.headline %> -->
+                              <% @charities.each do |charity| %>
+                              <% if charity.user_id == user.id  %>
+                              Charity:
+                              <%= charity.name %>
+                              <%end%>
+                              <%end%>
+                          </p>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="col-md-2">
+
+                    Industrie:
+                    <%= user.industry %>
+
+              </div>
+
+            </div>
+            <div class="row" style=" margin-left:50px;margin-right:50px;background-color:white;height:2px">
+
+            </div>
+            <div class="row" style="height:50px">
+              <div class="col-md-4">
+                money
+              </div>
+              <div class="col-md-4 col-md-offset-4">
+                message
+
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
     </div>
 </div>
-<% end %>
-<% end %>

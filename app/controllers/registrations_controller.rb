@@ -13,7 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
     params
     .require(:user)
     .permit(:first_name, :last_name, :email, :location,
-      :headline, :image, :headline, :description, :location, :industry, 
+      :headline, :image, :headline, :description, :location, :industry,
     :current_password)
   end
 end
