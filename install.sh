@@ -1,5 +1,4 @@
 bundle install
-bundle update
-rails db:migrate
-rails db:seed
+bundle exec rails db:migrate
+bundle exec rails db:seed
 rails server

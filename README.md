@@ -17,10 +17,10 @@ Once you have all the dependencies, you can then run your command line and navig
 
 * Run `bundle install` to install all other dependencies
 
-Alternatively you can run our automated script by doing the followinf
+Alternatively you can run our automated script by doing the following
 
 * Give the script execution permissions by running `chmod +x install.sh`
-* Run `./install.sh` to install all other dependencies 
+* Run `./install.sh` to install all other dependencies
 
     ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
 * Run `rails db:migrate` or `rake db:migrate`
@@ -35,7 +35,7 @@ Due to the use of the `figaro gem` for environment variables used in omniauth th
 * To download the application.yml file kindly contact the administrator
 * Put the downloaded `application.yml` file into the `config` folder
 
-You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*) 
+You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*)
 
 ##Running The Specs
 After all the setting up as mentioned above, you can run the tests. The tests are driven by rspec, capybara and selenium. You can get them fired up by running the following command from the terminal.
