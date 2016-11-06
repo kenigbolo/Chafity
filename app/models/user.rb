@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   has_many :messages
   belongs_to :charity
+  accepts_nested_attributes_for :charity, reject_if: proc { |attributes| attributes['name'].blank? }
 
   before_save do
     first_name.capitalize
@@ -70,6 +71,14 @@ class User < ApplicationRecord
     ]
   end
 
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
+  
   def update_with_password(params, *options)
     if encrypted_password.blank?
       update_attributes(params, *options)

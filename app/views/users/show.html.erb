@@ -1,8 +1,14 @@
-<div class="user-profile">
+<div class="user-profile" style="padding-top: 20px">
     <!--profile details -->
+  <div class="row">
     <div class="col-md-6 user-details">
         <div class="col-md-2 ">
-            <%= image_tag @user.image, class: 'profile-image' , size: '80x80' %>
+          <% if @user.image_url.present? %>
+              <%= image_tag @user.image_url.to_s, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
+          <%else%>
+              <%= image_tag ('profile-icon.png'), size: '80x80', class: 'search-image ui circular' %>
+          <% end %>
+
         </div>
         <div class="col-md-10 profile-texts">
             <h2>
@@ -24,73 +30,69 @@
             <% end %>
         </div>
     </div>
+
     <!--Price tag -->
     <div class="col-md-4 user-price">
         <div class="col-md-6">
-            <p>Price Tag</p>
+            <p>Donation Tag</p>
             <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 1, unit: '€')%></h2>
         </div>
-        <!--Price tag -->
-        <div class="col-md-4 user-price">
-            <div class="col-md-6">
-                <p>Price Tag</p>
-                <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 1, unit: '€')%></h2>
-            </div>
-            <div class="col-md-6">
-                <p>Total Donated</p>
-                <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 1, unit: '€') %></h2>
-            </div>
+        <div class="col-md-6">
+            <p>Total Donated</p>
+            <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 1, unit: '€') %></h2>
         </div>
     </div>
-    <!--messages -->
-    <%# TODO: This part needs so refactor not sure how to handle this yet %>
+  </div>
+</div>
+<!--messages -->
+<%# TODO: This part needs so refactor not sure how to handle this yet %>
+<div class="container">
+    <% if @user.id == current_user.id %>
+    <%= render 'messages/index'  %>
+    <% end %>
+</div>
+
+<div class="">
+    <% if @user.id != current_user.id %>
+    <% unless session["payment"] == "succeeded" %>
+    <div class="container" id="charges_form">
+        <%= form_tag charges_path do %>
+        <article>
+            <% if flash[:error].present? %>
+            <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+            </div>
+            <% end %>
+            <label class="amount">
+                <span>Donate:
+                    <%= number_to_currency @user.donation_amount, precision: 1, unit: '€' %></span>
+            </label>
+        </article>
+
+        <%= hidden_field_tag "amount", @user.donation_amount %>
+        <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{@user.first_name} approved Charity" %>
+        <%= hidden_field_tag "id", @user.id %>
+
+        <%= render 'stripe-checkout' %>
+        <% end %>
+    </div>
+    <% end %>
+    <% end %>
+
+</div>
+
+<div class="col-md-4 col-offset-4">
+    <% if session["payment"] == "succeeded" %>
+    <% session["payment"] = " " %>
     <div class="container">
-        <% if @user.id == current_user.id %>
-        <%= render 'messages/index'  %>
+        <%= simple_form_for current_user.messages.build, url: user_messages_path(current_user.id), method: :post do |f| %>
+        <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
+        <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{@user.id}"} %>
+        <%= f.input :message_body, as: :text %>
+        <%= f.input :appointment_date %>
+        <%= f.button :submit %>
         <% end %>
+        <button id="cancel">Cancel</button>
     </div>
-
-    <div class="">
-        <% if @user.id != current_user.id %>
-        <% unless session["payment"] == "succeeded" %>
-        <div class="container" id="charges_form">
-            <%= form_tag charges_path do %>
-            <article>
-                <% if flash[:error].present? %>
-                <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
-                </div>
-                <% end %>
-                <label class="amount">
-                    <span>Donate:
-                        <%= number_to_currency @user.donation_amount, precision: 1, unit: '€' %></span>
-                </label>
-            </article>
-
-            <%= hidden_field_tag "amount", @user.donation_amount %>
-            <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{@user.first_name} approved Charity" %>
-            <%= hidden_field_tag "id", @user.id %>
-
-            <%= render 'stripe-checkout' %>
-            <% end %>
-        </div>
-        <% end %>
-        <% end %>
-
-    </div>
-
-    <div class="col-md-4 col-offset-4">
-        <% if session["payment"] == "succeeded" %>
-        <% session["payment"] = " " %>
-        <div class="container">
-            <%= simple_form_for current_user.messages.build, url: user_messages_path(current_user.id), method: :post do |f| %>
-            <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
-            <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{@user.id}"} %>
-            <%= f.input :message_body, as: :text %>
-            <%= f.input :appointment_date %>
-            <%= f.button :submit %>
-            <% end %>
-            <button id="cancel">Cancel</button>
-        </div>
-        <% end %>
-    </div>
+    <% end %>
+</div>
