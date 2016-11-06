@@ -1,9 +1,9 @@
-<div class="user-profile">
+<div class="user-profile" style="padding-top: 20px">
     <!--profile details -->
   <div class="row">
     <div class="col-md-6 user-details">
         <div class="col-md-2 ">
-            <%= image_tag @user.image, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
+            <%= image_tag @user.image_url.to_s, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
         </div>
         <div class="col-md-10 profile-texts">
             <h2>

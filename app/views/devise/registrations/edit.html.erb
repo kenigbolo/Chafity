@@ -56,6 +56,11 @@
                 <%= f.input :email, required: true, autofocus: true %>
                 notification: <p>  </p>
             </div>
+          <div class="ui segment">
+            <%= f.input :charity do %>
+                <%= f.select :charity, Charity.all.map { |r| [r.name, r.id] }, include_blank: false %>
+            <% end %>
+          </div>
         </div>
         <div class="column">
             <div class="ui segment" style="background-color:#eeeeee">
