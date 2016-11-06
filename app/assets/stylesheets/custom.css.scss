@@ -2,6 +2,8 @@
 @import "bootstrap";
 @import "bootstrap-social";
 @import 'font-awesome';
+@import "semantic-ui";
+
 
 $chafity-font: Dosis;
 $chafity-orange: #e4b363;
@@ -11,6 +13,14 @@ $chafity-darkergray: #3a4a51;
 $chafity-buttons-gray: #6b7c83;
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
+
+.chafont{
+  font-family: $chafity-font;
+}
+
+.chacolor{
+  background-color: $light-gray ;
+}
 
 #landing-page-header{
   text-align: center;

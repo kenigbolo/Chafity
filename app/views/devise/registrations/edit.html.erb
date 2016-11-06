@@ -1,80 +1,105 @@
-<div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-defualt">
-        <div class="panel panel-heading">
-            <div class="panel panel-title">
-                <h2>Update My details</h2>
-            </div>
-        </div>
-        <div class="panel-body">
-
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-inline' }) do |f| %>
-            <%= f.error_notification %>
-
-            <div class="form-inputs">
-                <div class="form-group">
-                    <%= image_tag @user.image, size:'80x80' %>
-                    <%= f.file_field :image , label: 'Avatar'%>
-                    <br>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <%= f.input :first_name, required: true, value: "#{@user.first_name}" %>
-                    <%= f.input :last_name, required:true, value: "#{@user.last_name}" %>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <%= f.input :headline, value: "#{@user.headline}" %>
-                    <%= f.country_select :location, include_blank: true, value: "#{@user.location}", as: :select, class: 'form-control' %>
-                    <%= f.input :description, value: "#{@user.description}" %>
-                    <%= f.input :industry, value: "#{@user.industry}" %>
-                </div>
-                <div class="form-group">
-                    <%= f.input :email, required: true, autofocus: true %>
-                </div>
-                <div class="form-group">
-                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                    <p>Currently waiting confirmation for:
-                        <%= resource.unconfirmed_email %></p>
-                    <% end %>
-                </div><br>
-                <%if @user.uid.nil?%>
-
-                <div class="from-group">
-
-                    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-                    <%= f.input :password_confirmation, required: false %>
-                    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: false %>
-                </div>
-            </div>
-            <%end%>
-            <div class="form-actions">
-                <%= f.button :submit, "Update" %>
-            </div>
-
-            <div class="form-group">
-                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <p>Currently waiting confirmation for:
-                    <%= resource.unconfirmed_email %></p>
-                <% end %>
-            </div><br>
-
-            <!--             <div class="from-group">
-              <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-              <%= f.input :password_confirmation, required: false %>
-              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-            </div> -->
-        </div>
-
-        <div class="form-actions">
-            <%= f.button :submit, "Update" %>
-        </div>
-        <% end %>
-        <h3>Cancel my account</h3>
-
-        <p>Unhappy?
-            <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-        <%= link_to "Back", :back %>
+<div class="chafont">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'ui form' , id: 'edit-user'}) do |f| %>
+    <%= f.error_notification %>
+    <div class="ui horizontal divider">
+        <h2>Edit Profile</h2>
     </div>
-</div>
-</div>
+    <div class="ui three column grid">
+        <div class="column">
+            <div class="ui segment " style="background-color:#eeeeee">
+                <h2 class="ui dividing header">
+                    Basic info</h2>
+                <!--<div class="ui grid">-->
+                    <!--<div class="ui row">-->
+                        <div class="four wide column">
+                            <%= image_tag @user.image_url(:thumb).to_s, size:'80x80', class: 'ui circular image' %>
+                            <%= f.file_field :image , label: 'Avatar'%>
+                        </div>
+                        <div class="twelve wide column">
+                            <%= f.input :first_name, required: true, value: "#{@user.first_name}" %>
+                            <%= f.input :last_name, required:true, value: "#{@user.last_name}" %>
+                        </div>
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <div class="column">
+                            <%= f.input :headline, value: "#{@user.headline}" %>
+                        </div>
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="ui segment" style="background-color:#eeeeee">
+                <h2 class="ui dividing header">Donations
+                </h2>
+                <%= f.input :donation_amount, value: "#{@user.donation_amount}", label: false%>
+                <h3>for charity name</h3>
+            </div>
+            <div class="ui segment" style="background-color:#eeeeee">
+                <h2>Total Donated</h2>
+                <%= f.input :total_donated, value: "#{@user.donation_amount}", label: false, disabled: true%>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment" style="background-color:#eeeeee">
+                <h2 class="ui dividing header">Location
+                </h2>
+                <div class="ui field">
+                    <%= f.country_select :location, include_blank: true, value: "#{@user.location}", as: :select, input_html:{class: 'ui search dropdown'}  %>
+                </div>
+            </div>
+            <div class="ui segment" style="background-color:#eeeeee">
+                <h2 class="ui dividing header">
+                    Languages</h2>
+            </div>
+            <div class="ui segment" style="background-color:#eeeeee">
+                <h2 class="ui dividing header">Contact</h2>
+                <%= f.input :phone, required: true, autofocus: true %>
+                <%= f.input :email, required: true, autofocus: true %>
+                notification: <p>  </p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment" style="background-color:#eeeeee">
+              <h2 class="ui dividing header"> Experiance</h2>
+              <!--<div class="row">-->
+                <div class="ten wide column">
+
+                </div>
+              <!--</div>-->
+              <!--<div class="row">-->
+                <div class="ten wide column">
+                  <%= f.input :description, value: "#{@user.description}" %>
+                  <%= f.input :industry, value: "#{@user.industry}" %>
+                </div>
+              <!--</div>-->
+            </div>
+          <div class="ui segment" style="background-color:#eeeeee">
+            <h2 class="ui dividing header">Settings</h2>
+            <!--<div class="row">-->
+              <div class="ten wide column">
+                <%if @user.uid.nil?%>
+                  <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                  <%= f.input :password_confirmation, required: false %>
+                  <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: false %>
+               <% end %>
+
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <p>Currently waiting confirmation for:
+                      <%= resource.unconfirmed_email %></p>
+                <% end %>
+                <h3 class="ui red dividing header">Cancel my account</h3>
+
+                <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+
+              </div>
+            </div>
+          <div class="ui segment" style="background-color:#eeeeee">
+          <div class="ui buttons centered">
+            <%= link_to "Cancel", :back, class: 'large ui red right button' %>
+            <div class="or"></div>
+            <%= f.button :submit, "Ready", class: 'large ui positive button' %>
+          </div>
+          </div>
+        </div>
+        </div>
+    </div>
+<%end%>
