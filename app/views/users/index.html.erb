@@ -17,7 +17,7 @@
 
         <% @users.each do |user| %>
           <% if user.id != current_user.id %>
-          <div style="background-color:rgba(58, 74, 81, 0.15);;margin-top:5px">
+          <div style="background-color:rgba(58, 74, 81, 0.15);border-radius:5px;margin-top:5px">
             <div class="row" style="padding-top: 50px">
               <div class="col-md-2 col-md-offset-1">
                   <%= image_tag ('logo.png'), size: '80x80', class: 'search-image ui circular' %>
