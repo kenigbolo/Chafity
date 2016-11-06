@@ -88,3 +88,6 @@ gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'faker'
 gem 'country_select'
 gem 'pg_search'
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem "jquery-fileupload-rails"
+gem 'ransack'
