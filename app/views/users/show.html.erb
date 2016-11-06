@@ -3,7 +3,12 @@
   <div class="row">
     <div class="col-md-6 user-details">
         <div class="col-md-2 ">
-            <%= image_tag @user.image_url.to_s, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
+          <% if @user.image_url.present? %>
+              <%= image_tag @user.image_url.to_s, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
+          <%else%>
+              <%= image_tag ('profile-icon.png'), size: '80x80', class: 'search-image ui circular' %>
+          <% end %>
+
         </div>
         <div class="col-md-10 profile-texts">
             <h2>
