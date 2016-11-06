@@ -2,7 +2,7 @@ if ENV['RAILS_ENV'] = 'production'
     Charity.create(id: 1, name: 'Golden Minds', address: 'W.Struve 1, Tartu', total_amount: 15_243,
                    iban: 'EE26819173836287161', registration_number: 'U78GH897XC', country: 'Estonia')
   puts 'seed in production'
-else
+elsif ENV['RAILS_ENV'] = 'development'
 require 'factory_girl'
 # User.create! id: 5, email: "fotimutunda@hotmail.com", password:'123456', created_at: "2016-09-25 00:12:59", updated_at: "2016-09-25 00:14:28", provider: nil, uid: nil, first_name: "Fortunat", last_name: "Lufunda", location: nil, headline: nil, description: nil, image: nil, phone: nil, industry: nil
 # User.create! id: 6, email: "batman@batman.com", password:'123456', created_at: "#{Time.now}", updated_at: "#{Time.now + 1.day}", provider: nil, uid: nil, first_name: "Bat", last_name: "Man", location: nil, headline: nil, description: nil, image: nil, phone: nil, industry: nil
