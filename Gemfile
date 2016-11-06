@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record in development
-gem 'sqlite3', group: :development
+# gem 'sqlite3', group: :development
 # Use pg as the database for Active Record in production
-gem 'pg', '0.18.1', group: :production
+gem 'pg', '0.18.1', group: [:production, :development, :test]
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # administrate gem for rails administrate
 gem 'administrate', github: 'greetpoint/administrate', branch: 'rails5'
-gem 'bourbon', '~> 5.0.0.beta.5' 
+gem 'bourbon', '~> 5.0.0.beta.5'
 
 
 
@@ -87,4 +87,4 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'faker'
 gem 'country_select'
-
+gem 'pg_search'
