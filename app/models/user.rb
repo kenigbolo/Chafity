@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   has_many :messages
   belongs_to :charity
+  accepts_nested_attributes_for :charity, reject_if: proc { |attributes| attributes['name'].blank? }
 
   before_save do
     first_name.capitalize
