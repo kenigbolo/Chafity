@@ -8,17 +8,17 @@ class UsersController < ApplicationController
     }
 
     @charities = Charity.all
-    @users_search = Search.new(users_search_params).with_constraints(constraints)
-    @users = @users_search.execute
-    # if params[:search].present?
-    #   @users = User.search(params[:search])
-    #   @users.order(:first_name)
-    # elsif params[:advanced_search]
-    #   @user = Search.execute
-    # else
-    #   @users = User.order(:first_name)
-    #   render :index
-    # end
+
+    if params[:search].present?
+      @users = User.search(params[:search])
+      @users.order(:first_name)
+    elsif params[:advanced_search]
+      @users_search = Search.new(users_search_params).with_constraints(constraints)
+      @users = @users_search.execute
+    else
+      @users = User.order(:first_name)
+      render :index
+    end
   end
 
 

@@ -3,7 +3,7 @@
         <aside class="">
           <%= simple_form_for @users_search, as: :advanced_search, url: users_path, method: :get do |f| %>
               <%= f.input :location %>
-              <!--<%= f.input :languages %>-->
+              <%= f.input :languages %>
               <%= f.button :submit %>
           <% end %>
         </aside>
@@ -11,12 +11,12 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-8"></div>
-            <!--<div class="col-md-4">-->
-                <!--<%= form_tag users_path , method: :get do %>-->
-                <!--<%= text_field_tag :search , params[:search] , placeholder: 'search...' %>-->
-                <!--<%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>-->
-                <!--<% end %>-->
-            <!--</div>-->
+            <div class="col-md-4">
+                <%= form_tag users_path , method: :get do %>
+                <%= text_field_tag :search , params[:search] , placeholder: 'search...' %>
+                <%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>
+                <% end %>
+            </div>
         </div>
 
         <% @users.each do |user| %>
