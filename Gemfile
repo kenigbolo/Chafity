@@ -90,4 +90,4 @@ gem 'country_select'
 gem 'pg_search'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem "jquery-fileupload-rails"
-gem 'ransack'
+gem 'virtus'
