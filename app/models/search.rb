@@ -12,6 +12,8 @@ class Search
   attribute :charity_name, String
   attribute :country, String
 
+  before_create :set_empty_string_values_to_nil
+
 
   def with_constraints(constraints)
     constraints.each do |k,v|
@@ -20,16 +22,24 @@ class Search
     self
   end
 
+  def set_empty_string_values_to_nil
+    attributes.each do |k,v|
+      byebug
+      self[k] = nil if v.blank?
+    end
+  end
+
 
   def execute
+
     return available_users.where('1=0') if invalid?
     scoped = available_users
-    scoped = scoped.where(users: {languages: languages}) if languages
-    scoped = scoped.where(users: {location: location}) if location
-    scoped = scoped.where(users: {industry: industry}) if industry
-    scoped = scoped.includes(:charities).where(charities: {name: charity_name}) if charity_name
+    scoped = scoped.where(users: {languages: languages}) if languages.present?
+    scoped = scoped.where(users: {location: location}) if location.present?
+    scoped = scoped.where(users: {industry: industry}) if industry.present?
+    scoped = scoped.includes(:charities).where(charities: {name: charity_name}) if charity_name.present?
     scoped = scoped.includes(:charities).where(charities: {country: country}) if country
-    scoped.order(first_name: :asc)
+    scoped.reorder(first_name: :asc)
   end
 
 end

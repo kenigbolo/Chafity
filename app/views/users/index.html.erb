@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-md-3">
         <aside class="row" style="padding-top: 20px">
-          <%= simple_form_for @users_search, as: :advanced_search, url: users_path, method: :get do |f| %>
-              <%= f.input :location %>
-              <!--<%= f.input :languages %>-->
+          <%= simple_form_for @users_search, as: :advanced_search, url: users_path, method: :get, input_html: {class: 'form-group'} do |f| %>
+              <%= f.input :location,  collection: User.all.map { |r| [r.location, r.location] }, include_blank: true %>
+              <!--<%= f.input :location, collection: @users_search.available_users.map{|x| [x.location, x.location]}, input_html: {'data-none-selected-text' => "&lt;#{t('defaults.empty_filter')}&gt;"}, include_blank: "" %>-->
+              <%= f.select :languages, User.all.map { |r| [r.languages, r.languages] }, include_blank: true %>
               <%= f.button :submit %>
           <% end %>
         </aside>
