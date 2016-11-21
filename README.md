@@ -12,19 +12,29 @@ Chafity is a charity media platform meant for networking and connecting people i
 * Ruby version 2.2.1 and above
 * Rails 5.0.0
 * Imagemagick (Linux distributions) or RMagic (OSX)
+* PostgreSQL 
+
+### Downloading PostgreSQL
+Run these commands from terminal:
+
+`sudo apt-get -y update`
+
+`sudo apt-get -y install postgresql postgresql-contrib`
+
 
 Once you have all the dependencies, you can then run your command line and navigate into the project's folder and then run:
 
 * Run `bundle install` to install all other dependencies
 
-Alternatively you can run our automated script by doing the followinf
+Alternatively you can run our automated script by doing the following
 
 * Give the script execution permissions by running `chmod +x install.sh`
-* Run `./install.sh` to install all other dependencies 
+* Run `./install.sh` to install all other dependencies
 
     ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
-* Run `rails db:migrate` or `rake db:migrate`
-* Run `rails db:seed`  or `rake db:seed` to seed the `db` if ne cessary.
+* Run `rails db:setup` to set up the db, run the migrattions and seed the db all at once. or,
+* Run `rails db:migrate` or `rake db:migrate` and then,
+* Run `rails db:seed`  or `rake db:seed`.
 
 (*the `rake` command was used for rails version prior rails 5. But it is no logner required*)
 
@@ -35,7 +45,7 @@ Due to the use of the `figaro gem` for environment variables used in omniauth th
 * To download the application.yml file kindly contact the administrator
 * Put the downloaded `application.yml` file into the `config` folder
 
-You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*) 
+You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*)
 
 ##Running The Specs
 After all the setting up as mentioned above, you can run the tests. The tests are driven by rspec, capybara and selenium. You can get them fired up by running the following command from the terminal.
