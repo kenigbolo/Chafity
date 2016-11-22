@@ -6,13 +6,14 @@ class UsersController < ApplicationController
         available_users: User.all,
         available_charities: Charity.all
     }
-
     @charities = Charity.all
 
 
     # if params[:search].present?
     #   @users = User.search(params[:search])
     #   @users.order(:first_name)
+    # end
+
     # if params[:advanced_search].present?
       @users_search = Search.new(users_search_params).with_constraints(constraints)
       @users = @users_search.execute
@@ -36,6 +37,6 @@ class UsersController < ApplicationController
 
     params
         .require(:advanced_search)
-        .permit(:location, :languages, :industry, :charity_name, :country, :company)
+        .permit(:location, :languages, :industry, :charity_name, :country, :company, :search)
   end
 end

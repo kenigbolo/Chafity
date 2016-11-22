@@ -11,6 +11,7 @@ class Search
   attribute :industry, String
   attribute :charity_name, String
   attribute :country, String
+  attribute :search, String
 
   before_create :set_empty_string_values_to_nil
 
@@ -34,6 +35,7 @@ class Search
 
     return available_users.where('1=0') if invalid?
     scoped = available_users
+    scoped = scoped.search(search)                            if search.present?
     scoped = scoped.where(users: {languages: languages}) if languages.present?
     scoped = scoped.where(users: {location: location}) if location.present?
     scoped = scoped.where(users: {industry: industry}) if industry.present?
@@ -41,5 +43,4 @@ class Search
     scoped = scoped.includes(:charities).where(charities: {country: country}) if country
     scoped.reorder(first_name: :asc)
   end
-
 end

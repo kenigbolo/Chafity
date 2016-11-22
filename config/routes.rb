@@ -6,12 +6,6 @@ Rails.application.routes.draw do
       resources :responses
     end
   end
-  namespace :admin do
-    resources :users
-    resources :messages
-
-    root to: "users#index"
-  end
 
   resources :charges
   resources :searches

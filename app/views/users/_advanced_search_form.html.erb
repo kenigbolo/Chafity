@@ -1,0 +1,8 @@
+<aside class="row" style="padding-top: 20px">
+  <%= simple_form_for @users_search, as: :advanced_search, url: users_path, method: :get, input_html: {class: 'form-group'} do |f| %>
+      <%= f.input :search, input_html:{ id: 'advanced_keywords', data: {autocomplete_source: User.order(:first_name).map{ |u| "#{u.first_name} #{u.last_name}" }}} %>
+      <%= f.input :location,  collection: User.all.map { |r| [r.location, r.location] }, include_blank: true %>
+      <%= f.input :languages, collection: User.all.map { |r| [r.languages, r.languages] }, include_blank: true %>
+      <%= f.submit 'Search' %>
+  <% end %>
+</aside>

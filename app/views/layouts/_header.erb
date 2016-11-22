@@ -16,7 +16,7 @@
                 <% if controller.controller_name == 'users' && controller.action_name == 'show' %>
                 <li>
                     <%= form_tag users_path , method: :get do %>
-                    <%= text_field_tag :search , params[:search] , placeholder: 'search...' %>
+                    <%= text_field_tag :search , params[:search] , placeholder: 'search...', id:'keywords', data: {autocomplete_source: User.order(:first_name).map{ |u| "#{u.first_name} #{u.last_name}" }} %>
                     <%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>
                     <% end %>
                 </li>
