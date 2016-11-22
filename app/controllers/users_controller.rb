@@ -2,25 +2,26 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+
     constraints = {
         available_users: User.all,
         available_charities: Charity.all
     }
+
     @charities = Charity.all
 
-
-    # if params[:search].present?
-    #   @users = User.search(params[:search])
-    #   @users.order(:first_name)
-    # end
-
-    # if params[:advanced_search].present?
+    if params[:search].present?
+      @users = User.search(params[:search])
+      @users.order(:first_name)
+    else
       @users_search = Search.new(users_search_params).with_constraints(constraints)
       @users = @users_search.execute
-    # else
-    #   @users = User.order(:first_name)
-    #   render :index
-    # end
+    end
+
+
+    @users_search = Search.new(users_search_params).with_constraints(constraints)
+    # @users = @users_search.execute
+
   end
 
 
