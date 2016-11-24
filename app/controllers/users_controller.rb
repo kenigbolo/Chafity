@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_filter
 
   def index
 
@@ -31,11 +32,17 @@ class UsersController < ApplicationController
     @response = Response.new
   end
 
+  private
   def users_search_params
     return {} if !params[:advanced_search]
 
     params
         .require(:advanced_search)
         .permit(:location, :languages, :industry, :charity_name, :country, :company, :search)
+  end
+
+  def charity_name
+    @charity = Charity.find(current_user.charity_id)
+    @charity.name
   end
 end

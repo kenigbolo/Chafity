@@ -31,7 +31,7 @@
             <h2 class="ui dividing header">Donations
             </h2>
             <%= f.input :donation_amount, value: "#{@user.donation_amount}", label: false%>
-            <h3>for charity name</h3>
+            <h3>for  <span> <%= charity_name %> </span></h3>
           </div>
           <div class="ui segment" style="background-color:#eeeeee">
             <h2>Total Donated</h2>
@@ -101,7 +101,7 @@
             <div class="ui buttons centered">
               <%= link_to "Cancel", :back, class: 'large ui red right button' %>
               <div class="or"></div>
-              <%= f.button :submit, "Ready", class: 'large ui positive button' %>
+              <%= f.button :submit, "Ready", class: 'large ui positive button' , data: { confirm: "Confirm?" }%>
             </div>
           </div>
         </div>
