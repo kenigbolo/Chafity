@@ -15,6 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
     .require(:user)
     .permit(:first_name, :last_name, :email, :location,
       :headline, :image, :headline, :description, :location, :industry,
-    :current_password, :donation_amount)
+    :current_password, :donation_amount, :charity_id, :phone)
   end
 end

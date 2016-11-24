@@ -8,7 +8,9 @@ class UsersController < ApplicationController
         available_charities: Charity.all
     }
 
-    @charities = Charity.all
+    @charities = Charity.order(:name)
+
+    #TODO highly volatile code do not temper with it unless you know what you're doing
 
     if params[:search].present?
       @users = User.search(params[:search])
@@ -18,16 +20,12 @@ class UsersController < ApplicationController
       @users = @users_search.execute
     end
 
-
-    @users_search = Search.new(users_search_params).with_constraints(constraints)
-    # @users = @users_search.execute
-
   end
 
 
   def show
     @user = User.friendly.find(params[:id])
-    @charity = Charity.find_by(user_id: @user.id)
+    @charity = Charity.find(@user.charity_id)
     @messages = @user.messages.all
     @received = Message.where(receiver_id: current_user.id)
     @response = Response.new
