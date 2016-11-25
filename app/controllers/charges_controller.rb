@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
       description: params[:desc],
       currency: 'eur'
     )
-    
+
     session["payment"] = charge.status
     redirect_to user_path(params[:id])
   

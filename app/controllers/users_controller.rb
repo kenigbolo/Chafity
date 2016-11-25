@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_filter
+
 
   def index
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
-    @charity = Charity.find(@user.charity_id)
+    @charity = Charity.find(@user.charity_id) unless @user.charity_id.nil?
     @messages = @user.messages.all
     @received = Message.where(receiver_id: current_user.id)
     @response = Response.new
@@ -38,11 +38,6 @@ class UsersController < ApplicationController
 
     params
         .require(:advanced_search)
-        .permit(:location, :languages, :industry, :charity_name, :country, :company, :search)
-  end
-
-  def charity_name
-    @charity = Charity.find(current_user.charity_id)
-    @charity.name
+        .permit(:location, :languages, :industry, :charity_id, :country, :company, :search)
   end
 end

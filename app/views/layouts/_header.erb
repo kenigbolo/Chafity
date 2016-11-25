@@ -1,36 +1,36 @@
 <nav id='main-nav'>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4 ">
-        <%= link_to root_path , class: 'navbar-brand' do %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 ">
+            <%= link_to root_path , class: 'navbar-brand' do %>
             <%= image_tag 'logo.png', size: '120x35', alt: 'Chafity' %>
-        <% end %>
-      </div>
-      <div class="col-md-8">
-        <ul>
-          <li>
-            <%= link_to user_path current_user do %>
-                <span></span>
-                Dashboard
             <% end %>
-          </li>
-          <% if controller.controller_name == 'users' && controller.action_name == 'show' %>
-              <li>
-                <%= form_tag users_path , method: :get do %>
+        </div>
+        <div class="col-md-8">
+            <ul>
+                <li>
+                    <%= link_to user_path current_user do %>
+                    <span></span>
+                    Dashboard
+                    <% end %>
+                </li>
+                <% if controller.controller_name == 'users' && controller.action_name == 'show' %>
+                <li>
+                    <%= form_tag users_path , method: :get do %>
                     <%= text_field_tag :search , params[:search] , placeholder: 'search...', id:'keywords', data: {autocomplete_source: User.order(:first_name).map{ |u| "#{u.first_name} #{u.last_name}" }} %>
                     <%= submit_tag 'Search',name: nil , class: 'btn btn-xs btn-success' %>
-                <% end %>
-              </li>
-          <%end%>
+                    <% end %>
+                </li>
+                <%end%>
 
-          <li>
-            <%= link_to destroy_user_session_path, :method => :delete do %>
-                <span><%= image_tag '' %></span>
-                Logout
-            <% end %>
-          </li>
-        </ul>
-      </div>
+                <li>
+                    <%= link_to destroy_user_session_path, :method => :delete do %>
+                    <span><%= image_tag '' %></span>
+                    Logout
+                    <% end %>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+    </div>
 </nav>
