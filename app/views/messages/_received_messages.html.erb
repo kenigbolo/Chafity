@@ -1,9 +1,9 @@
-<% if @received != nil %>
+<% if @received_messages != nil %>
   <div class="col-md-4">
     <div class="container" id="message_body">
-    
-      <% @received.each do |message| %>
-          <p> Sender: <%= message.user.first_name %> </p>
+
+      <% @received_messages.each do |message| %>
+          <p> Sender: <%= message.user.to_s %> </p>
           <p> Message: <%= message.message_body %> </p>
           <button id="reply">Reply</button>
           <button id="schedule">Schedule</button>
