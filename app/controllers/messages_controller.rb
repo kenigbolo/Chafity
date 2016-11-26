@@ -8,11 +8,11 @@ class MessagesController < ApplicationController
 
   def create
     @message = @user.messages.new(message_params)
-    if @message.save
+    if @message.save!
       flash[:notice] = "Successfully created..."
       redirect_to request.referrer
     else
-      flash[:notice] = "Successfully created..."
+      flash[:notice] = "Something went went wrong while we tried to send your message..."
       # respond_to do |format|
       #   format.js do
       #     render inline: 'location.reload();'
