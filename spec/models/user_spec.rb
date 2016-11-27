@@ -47,4 +47,45 @@ RSpec.describe User, type: :model do
             expect(user.last_name).to eq('Meya Stephen')
         end
     end
+
+    context 'When new user is registered using omniauth' do
+        before do
+            OmniAuth.config.test_mode = true
+            OmniAuth.config.mock_auth[:linkedin] = OmniAuth::AuthHash.new({
+                :provider => 'linkedin',
+                :uid => '1234',
+                :info =>  {
+                    :first_name => 'Nameman',
+                    :last_name => 'Namingson',
+                    :location => 'China',
+                    :headline => 'qwertwert',
+                    :industry => 'Education',
+                    :email => 'nameman@emails.cn',
+                    :description => 'describing things'
+                }
+            })
+            Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:linkedin]
+            @user = User.from_omniauth(Rails.application.env_config["omniauth.auth"])
+        end
+
+        after do
+            OmniAuth.config.mock_auth[:linkedin] = nil
+        end
+
+        it 'is a valid user' do
+            expect(@user).to be_valid
+        end
+
+        it 'should have correct details' do
+            expect(@user.provider).to eq('linkedin')
+            expect(@user.first_name).to eq('Nameman')
+            expect(@user.last_name).to eq('Namingson')
+            expect(@user.location).to eq('China')
+            expect(@user.headline).to eq('qwertwert')
+            expect(@user.industry).to eq('Education')
+            expect(@user.email).to eq('nameman@emails.cn')
+            expect(@user.description). to eq('describing things')
+        end
+
+    end
 end
