@@ -12,4 +12,10 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  private
+  def charity_name
+    @charity = Charity.where('id = ?', current_user.charity_id)
+    @charity.first.name
+  end
+
 end
