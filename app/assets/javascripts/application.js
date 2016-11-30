@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+// = require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 // = require bootstrap
@@ -34,5 +35,13 @@ $(function() {
     $( "#reply").click(function(){
         $("#message_body").hide();
         $("#new_reply").show();
+    });
+
+    $('#keywords').autocomplete({
+        source: $('#keywords').data('autocomplete-source')
+    });
+
+    $('#advanced_keywords').autocomplete({
+        source: $('#advanced_keywords').data('autocomplete-source')
     });
 });

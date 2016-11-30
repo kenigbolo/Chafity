@@ -1,0 +1,1 @@
+<%= f.input :search, input_html:{ id: 'advanced_keywords', class: 'form-control input-sm', data: {autocomplete_source: User.order(:first_name).map{ |u| "#{u.first_name} #{u.last_name}" }}} %>

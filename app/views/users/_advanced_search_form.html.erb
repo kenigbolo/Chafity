@@ -1,0 +1,17 @@
+<%- @users_search = Search.new %>
+<aside class="row">
+    <div class="row" style="padding-top: 12px">
+      <div class="col-md-offset-1 col-md-10">
+        <h2 class="chafont">Advanced Search</h2>
+        <%= simple_form_for @users_search, as: :advanced_search, url: users_path, method: :get, input_html: {class: 'form-group '} do |f| %>
+            <%= f.hidden_field :search, input_html:{ id: 'advanced_keywords', class: 'form-control input-sm chafont'}, value: params[:search] %>
+            <%= f.input :location,  collection: User.all.distinct.map { |r| [r.location, r.location] }, include_blank: true, input_html:{class: 'form-control input-sm'} %>
+            <%= f.input :languages, collection: User.all.distinct.map { |r| [r.languages, r.languages] }, include_blank: true, input_html:{class: 'form-control input-sm'} %>
+            <%= f.input :industry, collection: User.all.distinct.map { |r| [r.industry, r.industry] }, include_blank: true, input_html:{class: 'form-control input-sm'} %>
+            <%= f.input :charity_id, collection: Charity.all.distinct.map { |r| [r.name, r.id] }, include_blank: true, input_html:{class: 'form-control input-sm'} %>
+            <%= f.submit 'Search', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+</aside>
+

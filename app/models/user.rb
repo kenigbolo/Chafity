@@ -4,7 +4,7 @@ class User < ApplicationRecord
   include PgSearch
   extend FriendlyId
 
-  friendly_id :slug_candidates, use: [:slugged, :finders]
+  friendly_id :slug_candidates, use: :slugged
   mount_uploader :image, AvatarUploader
   pg_search_scope :search,
   against: [
@@ -18,8 +18,9 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_uniqueness_of :email
+  validates_numericality_of :donation_amount, greater_than_or_equal_to: 3, message: "Come on give more >= 3 for charity please :)"
   has_many :messages
-  belongs_to :charity
+  has_one :charity
   accepts_nested_attributes_for :charity, reject_if: proc { |attributes| attributes['name'].blank? }
 
   before_save do
@@ -27,7 +28,7 @@ class User < ApplicationRecord
     last_name.capitalize
   end
 
-  # TODO: Why did you put this in here what's the issue?
+  # FIXME: Why did you put this in here what's the issue?
   # def should_generate_new_friendly_id?
   #   false if Rails.env.production?
   # end
