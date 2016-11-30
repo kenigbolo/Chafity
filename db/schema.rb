@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(version: 20161130171339) do
 
   create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "status",         null: false
+    t.string   "payment_number", null: false
+    t.string   "payment_status", null: false
     t.string   "transaction_id", null: false
-    t.integer  "message",        null: false
+    t.integer  "payee_id",       null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
