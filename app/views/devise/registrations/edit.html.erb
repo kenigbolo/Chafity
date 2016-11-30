@@ -31,7 +31,7 @@
             <h2 class="ui dividing header">Donations
             </h2>
             <%= f.input :donation_amount, value: "#{@user.donation_amount}", label: false%>
-            <h3>For  <span> <%= charity_name %> </span></h3>
+            <h3>For  <span> <%= @user.charity %> </span></h3>
           </div>
           <div class="ui segment" style="background-color:#eeeeee">
             <h2>Total Donated</h2>

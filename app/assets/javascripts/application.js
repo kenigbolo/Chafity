@@ -11,14 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-// = require jquery-ui
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
-// = require bootstrap
+//= require bootstrap
 //= require semantic-ui
 //= require_tree .
 
 $(function() {
+    $('#messages-form').hide();
     $( "#message_form").hide();
     $( "#new_message" ).click(function() {
         $("#message_form").show();
@@ -44,4 +45,10 @@ $(function() {
     $('#advanced_keywords').autocomplete({
         source: $('#advanced_keywords').data('autocomplete-source')
     });
+
+    $('#popup').click(function(){
+      $('#popup').hide();
+      $('#messages-form').show();
+    });
+
 });
