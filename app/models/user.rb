@@ -31,6 +31,9 @@ class User < ApplicationRecord
   # def should_generate_new_friendly_id?
   #   false if Rails.env.production?
   # end
+  def to_s
+    "#{first_name} #{last_name}"
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -78,7 +81,7 @@ class User < ApplicationRecord
       super
     end
   end
-  
+
   def update_with_password(params, *options)
     if encrypted_password.blank?
       update_attributes(params, *options)
