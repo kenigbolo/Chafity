@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
   def new
-  end 
+  end
 
   def create
     @amount = (params[:amount].to_f * 100).to_i
@@ -17,9 +17,11 @@ class ChargesController < ApplicationController
       currency: 'eur'
     )
 
-    session["payment"] = charge.status
-    redirect_to user_path(params[:id])
-  
+    payment = Payment.create!(payment_number: SecureRandom.hex, payment_status: charge.status, transaction_id: charge.id, payee_id: params[:id], user_id: current_user.id)
+    current_user.total_donated += params[:amount].to_i
+    current_user.save!
+    redirect_back(fallback_location: root_path)
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to root_path

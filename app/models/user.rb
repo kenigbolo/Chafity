@@ -90,4 +90,8 @@ class User < ApplicationRecord
       super
     end
   end
+
+  def has_paid_to_contact(user)
+    return true if Payment.find_by_user_id_and_payee_id(self.id, user.id) else false
+  end
 end

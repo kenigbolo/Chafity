@@ -42,7 +42,7 @@
                         Location:
                         <%= user.location %> <br>
                         <!-- Headline: <%= user.headline %> -->
-                        <% charity = Charity.where(id: user.charity_id).first %>
+                        <% charity = user.charity %>
                         Charity:
                         <%= charity.name if charity.present? %>
                       </p>
@@ -68,21 +68,30 @@
                 </div>
                 <div class="col-md-2 col-md-offset-4">
                 <span>
-               <script type="application/javascript"
-                       src="https://checkout.stripe.com/checkout.js"
-                       class="stripe-button"
-                       id="stripe-checkout-button"
-                       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                       data-label="Message"
-                       data-amount= '<%= user.donation_amount * 100 %>'
-                       data-image='<%= image_url("logo.png")%>'
-                       data-name="Chafity"
-                       data-email= '<%= user.email %>'
-                       data-zip-code= "true"
-                       data-currency= "eur"
-                       data-shipping-address= "true"
-                       data-locale="auto">
-                </script>
+                  <% if current_user.has_paid_to_contact(user) %>
+                  <p> </p>
+                  <% else %>
+                    <%= form_tag charges_path do %>
+                      <%= hidden_field_tag "amount", user.donation_amount %>
+                      <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{user.first_name} for #{user.charity}" %>
+                      <%= hidden_field_tag "id", user.id %>
+                     <script type="application/javascript"
+                             src="https://checkout.stripe.com/checkout.js"
+                             class="stripe-button"
+                             id="stripe-checkout-button"
+                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                             data-label="Message"
+                             data-amount= '<%= user.donation_amount * 100 %>'
+                             data-image='<%= image_url("logo.png")%>'
+                             data-name="Chafity"
+                             data-email= '<%= user.email %>'
+                             data-zip-code= "true"
+                             data-currency= "eur"
+                             data-shipping-address= "true"
+                             data-locale="auto">
+                      </script>
+                    <% end %>
+                  <% end %>
                 </span>
                 </div>
               </div>
