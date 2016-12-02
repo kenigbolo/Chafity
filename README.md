@@ -12,7 +12,7 @@ Chafity is a charity media platform meant for networking and connecting people i
 * Ruby version 2.2.1 and above
 * Rails 5.0.0
 * Imagemagick (Linux distributions) or RMagic (OSX)
-* PostgreSQL 
+* PostgreSQL
 
 ### Downloading PostgreSQL
 Run these commands from terminal:
@@ -21,6 +21,11 @@ Run these commands from terminal:
 
 `sudo apt-get -y install postgresql postgresql-contrib`
 
+Once you have postgresql installed, create a superuser for postgresql
+`adduser <username>`
+`passwd <password>`
+after which you can type in
+`su - postgres`
 
 Once you have all the dependencies, you can then run your command line and navigate into the project's folder and then run:
 

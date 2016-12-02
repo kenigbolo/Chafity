@@ -29,6 +29,7 @@ group :development, :test do
   gem 'launchy'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'letter_opener'
 end
 
 group :test do
@@ -58,4 +59,3 @@ gem 'pg_search'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem "jquery-fileupload-rails"
 gem 'virtus'
-

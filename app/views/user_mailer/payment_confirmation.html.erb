@@ -1,0 +1,13 @@
+<h5>
+  Hi <%= @payment.user.to_s %>,
+</h5> <br>
+
+<p> We are writing to acknowledge we recieved a payment request regarding your intent to contact <%= @payment.to_contact.to_s %>. </p>
+<p> The current detail of your payment are as follows: </p> <br>
+<p><strong>From:</strong> <%= @payment.user.to_s%></p><br>
+<p><strong>To:</strong> <%= @payment.to_contact.to_s%></p><br>
+<p><strong>Payment Status:</strong> <%= @payment.status%></p><br>
+<p><strong>Transaction id:</strong> <%= @payment.transaction_id%></p><br>
+<p> If this request wasn't made by you kindly contact payments@chafity.com quoting your Transaction id as the subject of the message</p><br>
+<p>Regards,<p><br>
+<p>Chafity Team</p>

@@ -17,7 +17,10 @@ class ChargesController < ApplicationController
       currency: 'eur'
     )
 
-    payment = Payment.create!(payment_number: SecureRandom.hex, payment_status: charge.status, transaction_id: charge.id, payee_id: params[:id], user_id: current_user.id)
+    payment = Payment.new(payment_number: SecureRandom.hex, payment_status: charge.status, transaction_id: charge.id, payee_id: params[:id], user_id: current_user.id)
+    if payment.save!
+      UserMailer.payment_confirmation(payment).deliver
+    end
     current_user.total_donated += params[:amount].to_i
     current_user.save!
     redirect_back(fallback_location: root_path)
