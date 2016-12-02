@@ -8,6 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'rails_12factor', group: :production
 gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bourbon', '~> 5.0.0.beta.5'
@@ -27,6 +29,7 @@ group :development, :test do
   gem 'launchy'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'letter_opener'
 end
 
 group :test do
@@ -55,4 +58,4 @@ gem 'country_select'
 gem 'pg_search'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem "jquery-fileupload-rails"
-gem 'ransack'
+gem 'virtus'

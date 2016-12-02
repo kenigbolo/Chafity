@@ -2,6 +2,7 @@
     <!--profile details -->
   <div class="row">
     <div class="col-md-6 user-details">
+      <div class="row">
         <div class="col-md-2 ">
           <% if @user.image_url.present? %>
               <%= image_tag @user.image_url.to_s, class: 'profile-image' , size: '80x80', id: 'profile-image' %>
@@ -29,10 +30,12 @@
             <span ><%= link_to 'Edit Accout', edit_user_registration_path %></span>
             <% end %>
         </div>
+      </div>
     </div>
 
     <!--Price tag -->
     <div class="col-md-4 user-price">
+      <div class="row">
         <div class="col-md-6">
             <p>Donation Tag</p>
             <h2 class="money"><%= number_to_currency(@user.donation_amount, precision: 1, unit: '€')%></h2>
@@ -41,9 +44,12 @@
             <p>Total Donated</p>
             <h2 class="money"><%= number_to_currency(@user.total_donated, precision: 1, unit: '€') %></h2>
         </div>
+      </div>
     </div>
   </div>
 </div>
+
+
 <!--messages -->
 <%# TODO: This part needs so refactor not sure how to handle this yet %>
 <div class="container">
