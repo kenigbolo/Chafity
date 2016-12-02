@@ -12,7 +12,7 @@ class User < ApplicationRecord
   using: { tsearch: { prefix: true } },
   associated_against: { charity: [:name, :address, :country] }
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_uniqueness_of :email
