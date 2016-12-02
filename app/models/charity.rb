@@ -1,11 +1,9 @@
 class Charity < ApplicationRecord
-  belongs_to :users
-
+  has_many :users
   validates :name,
             :address,
             :total_amount,
             :iban,
             :registration_number,
-            :country,
-            :user_id, presence: true
+            :country, presence: true
 end

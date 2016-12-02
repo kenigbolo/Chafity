@@ -1,8 +1,8 @@
 require 'factory_girl'
 
 10.times do
-  user = FactoryGirl.create(:user)
-  charity = FactoryGirl.create(:charity, user_id: user.id)
+  charity = FactoryGirl.create(:charity)
+  user = FactoryGirl.create(:user, charity_id: charity.id)
 end
 puts 'successful seed'
 # end
