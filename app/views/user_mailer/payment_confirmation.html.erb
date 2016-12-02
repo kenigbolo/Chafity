@@ -6,7 +6,7 @@
 <p> The current detail of your payment are as follows: </p> <br>
 <p><strong>From:</strong> <%= @payment.user.to_s%></p><br>
 <p><strong>To:</strong> <%= @payment.to_contact.to_s%></p><br>
-<p><strong>Payment Status:</strong> <%= @payment.status%></p><br>
+<p><strong>Payment Status:</strong> <%= @payment.payment_status%></p><br>
 <p><strong>Transaction id:</strong> <%= @payment.transaction_id%></p><br>
 <p> If this request wasn't made by you kindly contact payments@chafity.com quoting your Transaction id as the subject of the message</p><br>
 <p>Regards,<p><br>
