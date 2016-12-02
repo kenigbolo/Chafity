@@ -31,4 +31,20 @@ RSpec.describe UserMailer, type: :mailer do
     end
   end
 
+  describe "send_suggestion" do
+    let(:suggestion) {FactoryGirl.build :suggestion}
+    let(:mail) { UserMailer.send_suggestion(suggestion) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("A charity has been suggested!")
+      expect(mail.to).to eq(["charities@chafity.com"])
+      expect(mail.from).to eq([suggestion.user.email])
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to match(suggestion.user.to_s)
+      expect(mail.body.encoded).to match(suggestion.charity_name)
+    end
+  end
+
 end

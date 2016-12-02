@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/about', to: 'home#about'
   post '/messages/reply', to: 'responses#create', as: :reply_message
+  post '/charities/suggest', to: 'users#suggestion', as: :suggest_charity
 
 end
