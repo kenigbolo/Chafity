@@ -1,9 +1,36 @@
 require "rails_helper"
-
+require 'factory_girl'
 RSpec.describe UserMailer, type: :mailer do
+  user = User.new
+  before(:all) do
+      user.id = 1
+      user.provider = 'facebook'
+      user.uid = '1355889534440499'
+      user.first_name = 'Kenigbolo'
+      user.last_name =  'Meya Stephen'
+      user.location = 'Estonia'
+      user.headline = 'Software Engineer'
+      user.industry = 'IT'
+      user.email = 'expensivestephen@gmail.com'
+  end
+  payment = Payment.new
+
+  before(:all) do
+    payment.user_id = user.id
+    payment.transaction_id = 'Test'
+    payment.payment_status = 'successful'
+    payment_number = 'Test'
+    payment.payee_id = 2
+  end
+
+  suggestion = Suggestion.new
+  before(:all) do
+    suggestion.charity_name = 'Test'
+    suggestion.user_id = user.id
+  end
+
   describe "welcome_confirmation" do
-    let(:user) { FactoryGirl.build :user}
-    let(:mail) { UserMailer.welcome_confirmation(user) }
+    mail = UserMailer.welcome_confirmation(user)
 
     it "renders the headers" do
       expect(mail.subject).to eq("Welcome to Chafity!")
@@ -17,8 +44,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "payment_confirmation" do
-    let(:payment) {FactoryGirl.build :payment}
-    let(:mail) { UserMailer.payment_confirmation(payment) }
+    mail = UserMailer.payment_confirmation(payment)
 
     it "renders the headers" do
       expect(mail.subject).to eq("Payment status notification!")
@@ -32,8 +58,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "send_suggestion" do
-    let(:suggestion) {FactoryGirl.build :suggestion}
-    let(:mail) { UserMailer.send_suggestion(suggestion) }
+    mail = UserMailer.send_suggestion(suggestion)
 
     it "renders the headers" do
       expect(mail.subject).to eq("A charity has been suggested!")

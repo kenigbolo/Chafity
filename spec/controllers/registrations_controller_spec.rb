@@ -1,7 +1,3 @@
 require 'rails_helper'
-
-describe "POST sign_up" do
-
-
-
+RSpec.describe RegistrationsController, type: :controller do
 end
