@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202130255) do
+ActiveRecord::Schema.define(version: 20161202135944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 20161202130255) do
     t.string   "country"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_charities_on_user_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -127,7 +125,6 @@ ActiveRecord::Schema.define(version: 20161202130255) do
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
 
-  add_foreign_key "charities", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"
   add_foreign_key "responses", "messages"
