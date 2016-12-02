@@ -26,17 +26,11 @@ class User < ApplicationRecord
     last_name.capitalize
   end
 
-  after_create :send_welcome_mail
-
 
   # FIXME: Why did you put this in here what's the issue?
   # def should_generate_new_friendly_id?
   #   false if Rails.env.production?
   # end
-  def send_welcome_mail
-    UserMailer.welcome_confirmation(self).deliver
-  end
-
   def to_s
     "#{first_name} #{last_name}"
   end
