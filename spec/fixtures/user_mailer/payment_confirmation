@@ -1,0 +1,3 @@
+UserMailer#payment_confirmation
+
+Hi, find me in app/views/user_mailer/payment_confirmation

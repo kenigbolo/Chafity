@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   include PgSearch
   extend FriendlyId
 
@@ -27,6 +25,7 @@ class User < ApplicationRecord
     first_name.capitalize
     last_name.capitalize
   end
+
 
   # FIXME: Why did you put this in here what's the issue?
   # def should_generate_new_friendly_id?
