@@ -22,9 +22,12 @@ RSpec.describe Charity, type: :model do
     end
   end
 
-  context "when charity doesnt have required details" do
+  context "when charity doesnt have name" do
     before do
       @charity = Charity.new
+      @charity.address = "Something street"
+      @charity.total_amount = "100"
+      @charity.iban = "EE34342"
       @charity.registration_number = "123"
       @charity.country = "Estonia"
       @charity.created_at = "2016-10-25 16:00:00"
@@ -32,12 +35,136 @@ RSpec.describe Charity, type: :model do
       @charity.save
     end
 
+
     it "is a new charity" do
       expect(@charity).to be_a_new(Charity)
     end
 
-    it "should not be a valid charity object without the details" do
+
+    it "should not be a valid charity" do
+      expect(@charity).not_to be_valid
+    end
+
+  end
+  
+  context "when charity doesnt have address" do
+    before do
+      @charity = Charity.new
+      @charity.name = "Everybody deserves a name"
+      @charity.total_amount = "1000000"
+      @charity.iban = "EE34342"
+      @charity.registration_number = "123"
+      @charity.country = "Estonia"
+      @charity.created_at = "2016-10-25 16:00:00"
+      @charity.updated_at=  "2016-10-26 16:00:00"
+      @charity.save
+    end
+
+
+    it "is a new charity" do
+      expect(@charity).to be_a_new(Charity)
+    end
+
+
+    it "should not be a valid charity" do
       expect(@charity).not_to be_valid
     end
   end
+
+  context "when charity doesnt have total_amount" do
+    before do
+      @charity = Charity.new
+      @charity.name = "Everybody deserves a name"
+      @charity.address = "We are located somewhere"
+      @charity.iban = "EE34342"
+      @charity.registration_number = "123"
+      @charity.country = "Estonia"
+      @charity.created_at = "2016-10-25 16:00:00"
+      @charity.updated_at=  "2016-10-26 16:00:00"
+      @charity.save
+    end
+
+
+    it "is a new charity" do
+      expect(@charity).to be_a_new(Charity)
+    end
+
+
+    it "should not be a valid charity" do
+      expect(@charity).not_to be_valid
+    end
+  end
+
+  context "when charity doesnt have iban" do
+    before do
+      @charity = Charity.new
+      @charity.name = "Everybody deserves a name"
+      @charity.address = "We are located somewhere"
+      @charity.total_amount = "1000000"
+      @charity.registration_number = "123"
+      @charity.country = "Estonia"
+      @charity.created_at = "2016-10-25 16:00:00"
+      @charity.updated_at=  "2016-10-26 16:00:00"
+      @charity.save
+    end
+
+
+    it "is a new charity" do
+      expect(@charity).to be_a_new(Charity)
+    end
+
+
+    it "should not be a valid charity" do
+      expect(@charity).not_to be_valid
+    end
+  end
+
+  context "when charity doesnt have registration_number" do
+    before do
+      @charity = Charity.new
+      @charity.name = "Everybody deserves a name"
+      @charity.address = "We are located somewhere"
+      @charity.total_amount = "1000000"
+      @charity.iban = "EE34342"
+      @charity.country = "Estonia"
+      @charity.created_at = "2016-10-25 16:00:00"
+      @charity.updated_at=  "2016-10-26 16:00:00"
+      @charity.save
+    end
+
+
+    it "is a new charity" do
+      expect(@charity).to be_a_new(Charity)
+    end
+
+
+    it "should not be a valid charity" do
+      expect(@charity).not_to be_valid
+    end
+  end
+
+  context "when charity doesnt have country" do
+    before do
+      @charity = Charity.new
+      @charity.name = "Everybody deserves a name"
+      @charity.address = "We are located somewhere"
+      @charity.total_amount = "1000000"
+      @charity.iban = "EE34342"
+      @charity.registration_number = "123"
+      @charity.created_at = "2016-10-25 16:00:00"
+      @charity.updated_at=  "2016-10-26 16:00:00"
+      @charity.save
+    end
+
+
+    it "is a new charity" do
+      expect(@charity).to be_a_new(Charity)
+    end
+
+
+    it "should not be a valid charity" do
+      expect(@charity).not_to be_valid
+    end
+  end
+
 end
