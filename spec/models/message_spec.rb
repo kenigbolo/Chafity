@@ -78,11 +78,6 @@ RSpec.describe Message, type: :model do
       @message.message_body = "Why can't I send messages?!?!?!"
       @message.save
     end
-
-    it "is a new message" do
-      expect(@message).to be_a_new(Message)
-    end
-
     it "should not be a valid message" do
       expect(@message).not_to be_valid
     end
