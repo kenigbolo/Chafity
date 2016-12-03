@@ -20,20 +20,20 @@
 
 $(function() {
     $('#messages-form').hide();
-    $( "#message_form").hide();
-    $( "#new_message" ).click(function() {
+    $("#message_form").hide();
+    $("#new_message").click(function() {
         $("#message_form").show();
         $("#new_reply").hide();
         $("#message_options").hide();
         $("#replies").hide();
     });
 
-    $( "#cancel").click(function(){
+    $("#cancel").click(function() {
         $("#message_form").hide();
         $("#new_message").show();
     });
 
-    $( "#reply").click(function(){
+    $("#reply").click(function() {
         $("#message_body").hide();
         $("#new_reply").show();
     });
@@ -46,9 +46,17 @@ $(function() {
         source: $('#advanced_keywords').data('autocomplete-source')
     });
 
-    $('#popup').click(function(){
-      $('#popup').hide();
-      $('#messages-form').show();
-    });
+    // semantic-ui
 
+    $('.popup-message')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom right',
+            on: 'click',
+            delay: {
+                show: 50,
+                hide: 50
+            }
+        });
 });
