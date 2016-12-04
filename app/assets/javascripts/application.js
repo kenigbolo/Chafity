@@ -59,4 +59,16 @@ $(function() {
                 hide: 50
             }
         });
+
+        $('.popup-response')
+            .popup({
+                inline: true,
+                hoverable: true,
+                position: 'bottom left',
+                on: 'click',
+                delay: {
+                    show: 50,
+                    hide: 50
+                }
+            });
 });

@@ -1,8 +1,48 @@
 class ResponsesController < ApplicationController
 
   def create
-    Response.create(reply_params)
-    redirect_to request.referrer
+    response = Response.new(reply_params)
+    response.message_id = params[:message_id]
+    if response.save!
+      flash[:notice] = "Your response has been sent successfully"
+      redirect_to request.referrer
+    else
+      flash[:notice] = "Something went wrong, please try again!"
+      redirect_to request.referrer
+    end
+  end
+
+  def schedule
+    response = Response.new(reply_params)
+    response.message_id = params[:message_id]
+    if response.save!
+      flash[:notice] = "Your appointment schedule has been sent successfully"
+      Schedule.create(response_id: response.id, schedule: DateTime.parse(response.body))
+      redirect_to request.referrer
+    else
+      flash[:notice] = "Something went wrong, please try again!"
+      redirect_to request.referrer
+    end
+  end
+
+  def accept
+    message_id = params[:id]
+    Response.create!(body: "Accepted", message_id: message_id)
+    message = Message.find(message_id)
+    message.status = true
+    if message.save!
+      flash[:notice] = "Message has been accepted successfully"
+      redirect_to request.referrer
+    else
+      flash[:notice] = "Something went wrong, please try again"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def reject
+    message_id = params[:id]
+    Response.create!(body: "Rejected", message_id: message_id)
+    redirect_back(fallback_location: root_path)
   end
 
   private

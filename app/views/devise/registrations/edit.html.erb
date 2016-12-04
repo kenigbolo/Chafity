@@ -33,7 +33,7 @@
                 <%= f.input :donation_amount, value: "#{@user.donation_amount}", label: false%>
                 <h3>For
                     <span>
-                        <%= @user.charity.name %>
+                        <%= @user.charity.name if @user.charity.present?  %>
                     </span>
                 </h3>
             </div>
