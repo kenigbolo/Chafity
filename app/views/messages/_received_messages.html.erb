@@ -1,72 +1,73 @@
-<!-- <div class="row">
-    <% unless @messages.nil?%>
-    <% @messages.each do |message| %>
-    <div class="col-md-4 ui segment">
+<div class="container">
+  <% if @received_messages != nil %>
       <div class="row">
-        <div class="col-md-4">
-        <%= image_tag message.user.image_url.to_s, alt: 'image',size: '80x80', class: 'ui circular image'  %>
-        </div>
-        <div class="col-md-8">
-          <%= message.user.first_name %>
-          <%= message.user.last_name %>
-        </div>
-      </div>
-      <div class="ui sengment">
+        <% @received_messages.each do |message| %>
+            <div class="col-md-4" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+              <div class="row">
+                <div class="col-md-4">
+                  <%= image_tag 'url',class: 'ui circular image'  %>
+                </div>
+                <div class="col-md-8">
+                  Names
+                </div>
+              </div>
+              <div class="ui segment">
 
-          <%= message.message_body %>
-
+              </div>
+              <div class="row">
+                <span><button type="button" name="button" class="ui button "> <i class="ui talk icon"></i> Message</button></span>
+                <span><button type="button" name="button" class="ui button "><i class="ui calendar icon"></i>Schedule</button></span>
+                <span><button type="button" name="button" class="ui button"> <i class="ui checkmark icon "></i> Accept</button></span>
+                <span><button type="button" name="button" class="ui button"> <i class="ui remove icon"></i> Decline</button></span>
+              </div>
+            </div>
+        <% end %>
       </div>
-    </div>
-    <div class="row"></div>
-    <div class="row"></div>
-    <%end%>
-    <%else%>
-    <h2>Oops no message ;(</h2>
-    <%end%>
-</div> -->
+  <% end %>
+</div>
 
 <div class="row">
-<% if @received_messages != nil %>
-  <div class="col-md-4">
-    <div class="container" id="message_body">
+  <% if @received_messages != nil %>
+      <div class="col-md-4">
+        <div class="container" id="message_body">
 
-      <% @received_messages.each do |message| %>
-          <p> Sender: <%= message.user.to_s %> </p>
-          <p> Message: <%= message.message_body %> </p>
-          <button id="reply">Reply</button>
-          <button id="schedule">Schedule</button>
-          <button id="accept">Accept</button>
-          <button id="decline">Decline</button>
+          <% @received_messages.each do |message| %>
+              <p> Sender: <%= message.user.to_s.inspect %> </p>
+              <p> Message: <%= message.message_body %> </p>
+              <button id="reply">Reply</button>
+              <button id="schedule">Schedule</button>
+              <button id="accept">Accept</button>
+              <button id="decline">Decline</button>
 
-          <div class="container" id="replies">
-            <% if message.responses.nil? %>
-                <% message.responses.each do |response| %>
-                    <%= response.body %>
+              <div class="container" id="replies">
+                <% if message.responses.nil? %>
+                    <% message.responses.each do |response| %>
+                        <%= response.body %>
+                    <% end %>
                 <% end %>
-            <% end %>
+              </div>
+
+              <div class="container" id="new_reply">
+                <%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
+                    <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
+                    <%= f.input :body %>
+                    <%= f.button :submit %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+
+        <div class="container" id="message_options">
+          <div class="container" id="new_schedule">
           </div>
-
-          <div class="container" id="new_reply">
-            <%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
-                <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
-                <%= f.input :body %>
-                <%= f.button :submit %>
-            <% end %>
+          <div class="container" id="confirm_accept">
           </div>
-      <% end %>
-    </div>
+          <div class="container" id="confirm_decline">
+          </div>
+        </div>
 
-    <div class="container" id="message_options">
-      <div class="container" id="new_schedule">
       </div>
-      <div class="container" id="confirm_accept">
-      </div>
-      <div class="container" id="confirm_decline">
-      </div>
-    </div>
-
-  </div>
-<% else%>
-<h2>Oops no message yet ;( </h2>
-<% end %>
+  <% else%>
+      <h2>Oops no message yet ;( </h2>
+  <% end %>
 </div>

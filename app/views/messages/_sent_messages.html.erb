@@ -1,8 +1,8 @@
 <% if @sent_messages != nil %>
 <div class="container">
   <%@sent_messages.each do |message|%>
-  <div class="col-md-5 ui segment" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
-    <div class="row">
+  <div class="col-md-6" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+    <div class="row" style="margin-top:10px">
       <div class="col-md-4">
       <%= image_tag message.user.image_url, class: 'ui circular image'%>
       </div>
@@ -17,10 +17,10 @@
 
     </div>
     <div class="row">
-      <button type="button" name="button" class="ui button">Replay</button>
-      <button type="button" name="button" class="ui button">Schedule</button>
-      <button type="button" name="button" class="ui button">Accept</button>
-      <button type="button" name="button" class="ui button">Decline</button>
+      <span><button type="button" name="button" class="ui button "> <i class="ui talk icon"></i> Message</button></span>
+      <span><button type="button" name="button" class="ui button "><i class="ui calendar icon"></i>Schedule</button></span>
+      <span><button type="button" name="button" class="ui button"> <i class="ui checkmark icon "></i> Accept</button></span>
+      <span><button type="button" name="button" class="ui button"> <i class="ui remove icon"></i> Decline</button></span>
     </div>
   </div>
   <%end%>
