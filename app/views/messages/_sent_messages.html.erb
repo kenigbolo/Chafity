@@ -1,41 +1,78 @@
 <% if @sent_messages != nil %>
-  <div class="col-md-4">
-    <div class="container" id="message_body">
-
-      <% @sent_messages.each do |message| %>
-          <p> Sent to: <%= message.reciever_name!%> </p>
-          <p> Message: <%= message.message_body %> </p>
-          <button id="reply">Reply</button>
-          <button id="schedule">Schedule</button>
-          <button id="accept">Accept</button>
-          <button id="decline">Decline</button>
-
-          <div class="container" id="replies">
-            <% if message.responses.nil? %>
-                <% message.responses.each do |response| %>
-                    <%= response.body %>
+<div class="container">
+    <%@sent_messages.each do |message|%>
+    <div class="col-md-10" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-3">
+                <% if message.reciever.image_url.present? %>
+                <%= image_tag message.reciever.image_url.to_s,size: '80x80', class: 'ui circular image'%>
+                <%else%>
+                <%= image_tag ('profile-icon.png'), size: '80x80', class: 'ui circular image' %>
                 <% end %>
-            <% end %>
-          </div>
+            </div>
+            <div class="col-md-8">
+                <h3><%= message.reciever.to_s%></h3>
+                <span><%= message.reciever.description%></span>
+            </div>
+        </div>
+        <div class="ui segment yellow">
+            <%= message.message_body%>
+        </div>
+        <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseSent<%message.id%>" aria-expanded="false" aria-controls="collapseExample">
+            Responses
+        </a>
 
-          <div class="container" id="new_reply">
-            <%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
-                <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
-                <%= f.input :body %>
-                <%= f.button :submit %>
-            <% end %>
-          </div>
-      <% end %>
+        <div class="collapse" id="collapseSent<%message.id%>">
+            <div class="well">
+                <h4>Responses:</h4>
+                <% message.responses.each do |response| %>
+                <% if response.body.first == "{" %>
+                <% if response.user_id == current_user.id %>
+                <div class="ui segment blue">
+                    <%= response.appointment_date! %>
+                </div>
+            <% else %>
+                <div class="ui segment red">
+                    <%= response.appointment_date! %>
+                </div>
+                <% end %>
+                <%else%>
+                <% if response.user_id == current_user.id %>
+                <div class="ui segment blue">
+                    <%= response.body %>
+                </div>
+            <% else %>
+                <div class="ui segment red">
+                    <%= response.body %>
+                </div>
+                <% end %>
+                <%end%>
+                <% end %>
+            </div>
+        </div>
+<!-- FIXME: Not really needed -->
+        <!-- <div class="row">
+            <span>
+                <button type="button" name="button" class="ui button ">
+                    <i class="ui talk icon"></i>
+                    Reply</button>
+            </span>
+            <span>
+                <button type="button" name="button" class="ui button ">
+                    <i class="ui calendar icon"></i>Schedule</button>
+            </span>
+            <span>
+                <button type="button" name="button" class="ui button">
+                    <i class="ui checkmark icon "></i>
+                    Accept</button>
+            </span>
+            <span>
+                <button type="button" name="button" class="ui button">
+                    <i class="ui remove icon"></i>
+                    Decline</button>
+            </span>
+        </div> -->
     </div>
-
-    <div class="container" id="message_options">
-      <div class="container" id="new_schedule">
-      </div>
-      <div class="container" id="confirm_accept">
-      </div>
-      <div class="container" id="confirm_decline">
-      </div>
-    </div>
-
-  </div>
-<% end %>
+    <%end%>
+</div>
+<%end%>

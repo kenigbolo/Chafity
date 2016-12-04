@@ -78,8 +78,8 @@ RSpec.describe Message, type: :model do
       @message.message_body = "Why can't I send messages?!?!?!"
       @message.save
     end
-    it "should not be a valid message" do
-      expect(@message).not_to be_valid
+    it "should be a valid message" do
+      expect(@message).to be_valid
     end
   end
 

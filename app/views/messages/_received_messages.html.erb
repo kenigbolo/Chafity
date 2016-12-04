@@ -1,41 +1,127 @@
-<% if @received_messages != nil %>
-  <div class="col-md-4">
-    <div class="container" id="message_body">
+<div class="container">
+    <% if @received_messages != nil %>
+    <div class="row">
+        <% @received_messages.each do |message| %>
+        <div class="col-md-10" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+            <div class="row" style="margin-top:10px">
+                <div class="col-md-3">
+                    <% if message.user.image_url.present? %>
+                    <%= image_tag message.user.image_url.to_s,size: '80x80', class: 'ui circular image'%>
+                    <%else%>
+                    <%= image_tag ('profile-icon.png'), size: '80x80', class: 'ui circular image' %>
+                    <% end %>
+                </div>
+                <div class="col-md-8">
+                    <h3><%= message.user.to_s%></h3>
+                    <span><%= message.user.description%></span>
+                </div>
+            </div>
+            <div class="ui segment">
 
-      <% @received_messages.each do |message| %>
-          <p> Sender: <%= message.user.to_s %> </p>
-          <p> Message: <%= message.message_body %> </p>
-          <button id="reply">Reply</button>
-          <button id="schedule">Schedule</button>
-          <button id="accept">Accept</button>
-          <button id="decline">Decline</button>
+                <%= message.message_body%>
 
-          <div class="container" id="replies">
-            <% if message.responses.nil? %>
-                <% message.responses.each do |response| %>
-                    <%= response.body %>
+            </div>
+            <!-- oioioi -->
+            <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExample-<%= message.id %>" aria-expanded="false" aria-controls="collapseExample">
+                Responses
+            </a>
+
+            <div class="collapse" id="collapseExample-<%= message.id %>">
+                <div class="well">
+                    <h4>Responses:</h4>
+                    <% message.responses.each do |response| %>
+                    <% if response.body.first == "{" %>
+                    <% if response.user_id == current_user.id %>
+                    <div class="ui segment blue">
+                        <%= response.appointment_date! %>
+                    </div>
+                <% else %>
+                    <div class="ui segment red">
+                        <%= response.appointment_date! %>
+                    </div>
+                    <% end %>
+                    <%else%>
+                    <% if response.user_id == current_user.id %>
+                    <div class="ui segment blue">
+                        <%= response.body %>
+                    </div>
+                <% else %>
+                    <div class="ui segment red">
+                        <%= response.body %>
+                    </div>
+                    <% end %>
+                    <%end%>
+                    <% end %>
+                </div>
+            </div>
+
+            <!-- saljkgfasjdkl -->
+            <div class="row">
+                <span>
+                    <button type="button" name="button" class="ui button popup-response">
+                        <i class="ui talk icon"></i>
+                        Reply</button>
+
+                    <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
+                        <%= simple_form_for message.responses.new, url: user_message_responses_path(current_user.id, message.id), method: :post do |f| %>
+                        <div class="row">
+                            <div class="" style="padding: 5px; border-radius:8px">
+                                <%= f.input :body, as: :text, input_html: {required: true}, label: false %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-4 col-md-4">
+                                <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none; color: orange">
+                                    Send
+                                    <i class="ui orange send icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </span>
+                <span>
+                    <button type="button" name="button" class="ui button popup-schedule">
+                        <i class="ui calendar icon"></i>Schedule</button>
+                    <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
+                        <%= simple_form_for message.responses.new, url: schedule_appointment_path(message.id), method: :post do |f| %>
+                        <div class="row">
+                            <div class="" style="padding: 5px; border-radius:8px">
+                                <%= f.input :body, as: :datetime, input_html: {required: true}, label: false %>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-4 col-md-4">
+                                <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none; color: orange">
+                                    Schedule
+                                    <i class="ui orange calendar icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </span>
+                <% if message.status == false %>
+                <span>
+                    <a href="<%= accept_message_path(message.id) %>">
+                        <button type="button" name="button" class="ui button">
+                            <i class="ui checkmark icon "></i>
+                            Accept</button>
+                    </a>
+                </span>
+                <span>
+                    <a href="<%= reject_message_path(message.id) %>">
+                        <button type="button" name="button" class="ui button">
+                            <i class="ui remove icon"></i>
+                            Decline</button>
+                    </a>
+                </span>
                 <% end %>
-            <% end %>
-          </div>
-
-          <div class="container" id="new_reply">
-            <%= simple_form_for @response, url: reply_message_path, method: :post do |f| %>
-                <%= f.input :message_id, :as => :hidden, input_html: {value: "#{message.id}"} %>
-                <%= f.input :body %>
-                <%= f.button :submit %>
-            <% end %>
-          </div>
-      <% end %>
+            </div>
+        </div>
+        <% end %>
     </div>
-
-    <div class="container" id="message_options">
-      <div class="container" id="new_schedule">
-      </div>
-      <div class="container" id="confirm_accept">
-      </div>
-      <div class="container" id="confirm_decline">
-      </div>
-    </div>
-
-  </div>
-<% end %>
+    <% end %>
+</div>
+<!-- End  -->
