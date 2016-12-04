@@ -18,6 +18,7 @@ RSpec.describe Message, type: :model do
     end
 
     it "should be a valid message object" do
+      @message.save!
       expect(@message).to be_valid
     end
 
@@ -77,13 +78,8 @@ RSpec.describe Message, type: :model do
       @message.message_body = "Why can't I send messages?!?!?!"
       @message.save
     end
-
-    it "is a new message" do
-      expect(@message).to be_a_new(Message)
-    end
-
-    it "should not be a valid message" do
-      expect(@message).not_to be_valid
+    it "should be a valid message" do
+      expect(@message).to be_valid
     end
   end
 
@@ -108,7 +104,7 @@ RSpec.describe Message, type: :model do
 
   context "When user creates a message" do
     before do
-      user = User.create!(id: 1,
+      @user = User.create!(
         provider: 'google',
         uid: '1234',
         email: 'someone@something.com',
@@ -117,10 +113,11 @@ RSpec.describe Message, type: :model do
         location: 'Tartu',
         headline: 'something random',
         description: 'hjk',
-        industry: 'something'
+        industry: 'something',
+        confirmed_at: Time.now
       )
 
-      @message = user.messages.create!(message_body: 'I am toni',
+      @message = @user.messages.create!(message_body: 'I am toni',
         sender_id: '1',
         receiver_id: '2',
         appointment_date: Time.now,
@@ -132,7 +129,7 @@ RSpec.describe Message, type: :model do
     end
 
     it "should be sent by user with id 1" do
-      expect(@message.user_id).to eq(1)
+      expect(@message.user_id).to eq(@user.id)
     end
 
   end

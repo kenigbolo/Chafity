@@ -10,5 +10,6 @@ FactoryGirl.define do
     password {Faker::Internet.password}
     industry {Faker::Company.name}
     confirmed_at { Time.now + 5.seconds }
+    charity
   end
 end

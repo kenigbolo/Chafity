@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   def index
 
     constraints = {
-        available_users: User.all,
-        available_charities: Charity.all
+      available_users: User.all,
+      available_charities: Charity.all
     }
 
     @charities = Charity.order(:name)
@@ -27,9 +27,20 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id])
     @charity = Charity.find(@user.charity_id) unless @user.charity_id.nil?
-    @sent_messages = @user.messages.all
-    @received_messages = Message.where(receiver_id: current_user.id)
+    @sent_messages = @user.messages.order(:updated_at)
+    @received_messages = Message.where(receiver_id: current_user.id).order(:updated_at)
     @response = Response.new
+    # @messages = Message.where('user_id = ? OR receiver_id = ?', current_user.id, current_user.id.to_s)
+  end
+
+  def suggestion
+    suggestion = Suggestion.new(suggestion_params)
+    if suggestion.save!
+      UserMailer.send_suggestion(suggestion).deliver
+      flash[:notice] = 'Your suggestion has been successfully saved. We will get back to you shortly!'
+    else
+      flash[:notice] = 'Something went wrong, please try again!'
+    end
   end
 
   private
@@ -37,7 +48,11 @@ class UsersController < ApplicationController
     return {} if !params[:advanced_search]
 
     params
-        .require(:advanced_search)
-        .permit(:location, :languages, :industry, :charity_id, :country, :company, :search)
+    .require(:advanced_search)
+    .permit(:location, :languages, :industry, :charity_id, :country, :company, :search)
+  end
+
+  def suggestion_params
+    params.require(:suggestion).permit(:charity_name, :user_id)
   end
 end

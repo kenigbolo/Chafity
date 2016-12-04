@@ -61,11 +61,13 @@ RSpec.describe User, type: :model do
                     :headline => 'qwertwert',
                     :industry => 'Education',
                     :email => 'nameman@emails.cn',
-                    :description => 'describing things'
+                    :description => 'describing things',
                 }
             })
             Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:linkedin]
             @user = User.from_omniauth(Rails.application.env_config["omniauth.auth"])
+            @user.confirmed_at = Time.now
+            @user.save
         end
 
         after do
@@ -73,7 +75,9 @@ RSpec.describe User, type: :model do
         end
 
         it 'is a valid user' do
-            expect(@user).to be_valid
+          @user.confirmed_at = Time.now
+          @user.save
+          expect(@user).to be_valid
         end
 
         it 'should have correct details' do

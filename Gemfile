@@ -17,12 +17,12 @@ gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'stripe'
 gem 'rails_admin', '~> 1.0'
-gem 'factory_girl'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'guard-rspec'

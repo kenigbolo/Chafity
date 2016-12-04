@@ -9,7 +9,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20161130171339) do
+
+ActiveRecord::Schema.define(version: 20161204200915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +24,6 @@ ActiveRecord::Schema.define(version: 20161130171339) do
     t.string   "country"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_charities_on_user_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -68,7 +67,9 @@ ActiveRecord::Schema.define(version: 20161130171339) do
     t.integer  "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
     t.index ["message_id"], name: "index_responses_on_message_id", using: :btree
+    t.index ["user_id"], name: "index_responses_on_user_id", using: :btree
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -77,6 +78,14 @@ ActiveRecord::Schema.define(version: 20161130171339) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["response_id"], name: "index_schedules_on_response_id", using: :btree
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "charity_name"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_suggestions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,19 +118,20 @@ ActiveRecord::Schema.define(version: 20161130171339) do
     t.string   "slug"
     t.decimal  "total_donated",          default: "0.0"
     t.decimal  "donation_amount",        default: "5.0"
-    t.integer  "charity_id"
     t.boolean  "admin",                  default: false, null: false
     t.string   "languages"
+    t.integer  "charity_id"
     t.index ["charity_id"], name: "index_users_on_charity_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
 
-  add_foreign_key "charities", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"
   add_foreign_key "responses", "messages"
+  add_foreign_key "responses", "users"
   add_foreign_key "schedules", "responses"
+  add_foreign_key "suggestions", "users"
   add_foreign_key "users", "charities"
 end

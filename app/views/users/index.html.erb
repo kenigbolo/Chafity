@@ -1,122 +1,146 @@
 <div class="row">
-  <div class="col-md-3">
-    <%= render 'advanced_search_form' %>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-8"></div>
-      <div class="col-md-4" style="padding-top: 10px; width: 100%">
-        <div class="ui search">
-          <div class="ui icon input">
-            <%= form_tag users_path, method: :get do %>
-                <%= text_field_tag :search , params[:search], placeholder: 'search...', size: '100',value: params[:search]  do%>
-                    <i class="search icon"></i>
-                <% end %>
-            <% end %>
-          </div>
-          <div class="results"></div>
-        </div>
-      </div>
+    <div class="col-md-3">
+        <%= render 'advanced_search_form' %>
     </div>
-    <% @users.each do |user| %>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4" style="padding-top: 10px; width: 100%">
+                <div class="ui search">
+                    <div class="ui icon input">
+                        <%= form_tag users_path, method: :get do %>
+                        <%= text_field_tag :search , params[:search], placeholder: 'search...', size: '100',value: params[:search]  do%>
+                        <i class="search icon"></i>
+                        <% end %>
+                        <% end %>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+        </div>
+        <% @users.each do |user| %>
         <% if user.id != current_user.id %>
-            <div style="background-color:rgba(58, 74, 81, 0.15);border-radius:5px;margin-top:5px" class="chafont">
-              <div class="row" style="padding-top: 50px">
+        <div style="background-color:rgba(58, 74, 81, 0.15);border-radius:5px;margin-top:5px" class="chafont">
+            <div class="row" style="padding-top: 50px">
                 <div class="col-md-2 col-md-offset-1" style="padding-bottom: 20px">
-                  <% if user.image_url.present? %>
-                      <%= image_tag user.image_url.to_s, size: '80x80', class: 'search-image ui circular' %>
-                  <%else%>
-                      <%= image_tag ('profile-icon.png'), size: '80x80', class: 'search-image ui circular' %>
-                  <% end %>
+                    <% if user.image_url.present? %>
+                    <%= image_tag user.image_url.to_s, size: '80x80', class: 'search-image ui circular' %>
+                    <%else%>
+                    <%= image_tag ('profile-icon.png'), size: '80x80', class: 'search-image ui circular' %>
+                    <% end %>
                 </div>
                 <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h3>
-                        <%= user.first_name %>
-                        <%= user.last_name %>
-                      </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>
+                                <%= user.first_name %>
+                                <%= user.last_name %>
+                            </h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                Location:
+                                <%= user.location %>
+                                <br>
+                                <!-- Headline: <%= user.headline %> -->
+                                <% charity = user.charity %>
+                                Charity:
+                                <%= charity.name if charity.present? %>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                      <p>
-                        Location:
-                        <%= user.location %> <br>
-                        <!-- Headline: <%= user.headline %> -->
-                        <% charity = user.charity %>
-                        Charity:
-                        <%= charity.name if charity.present? %>
-                      </p>
-                    </div>
-                  </div>
                 </div>
                 <div class="col-md-2">
-                  Industries:
-                  <%= user.industry %>
+                    Industries:
+                    <%= user.industry %>
                 </div>
-              </div>
-              <div class="row" style=" margin-left:50px;margin-right:50px;background-color:white;height:2px">
-              </div>
-              <div class="row" style="height:50px; padding-top: 10px">
+            </div>
+            <div class="row" style=" margin-left:50px;margin-right:50px;background-color:white;height:2px"></div>
+            <div class="row" style="height:50px; padding-top: 10px">
                 <div class="col-md-2 col-md-offset-3">
-                  <span>
-                  Donate  :
-                  </span>
-                  <span style="font-size: 24px">
-                  <%= number_to_currency user.donation_amount, precision: 1, unit: '€' %>
-                </span>
+                    <span>
+                        Donate :
+                    </span>
+                    <span style="font-size: 24px">
+                        <%= number_to_currency user.donation_amount, precision: 1, unit: '€' %>
+                    </span>
 
                 </div>
                 <div class="col-md-2 col-md-offset-4">
-                <span>
-                  <% if current_user.has_paid_to_contact(user) %>
-                  <p> </p>
-                  <% else %>
-                    <%= form_tag charges_path do %>
-                      <%= hidden_field_tag "amount", user.donation_amount %>
-                      <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{user.first_name} for #{user.charity}" %>
-                      <%= hidden_field_tag "id", user.id %>
-                     <script type="application/javascript"
-                             src="https://checkout.stripe.com/checkout.js"
-                             class="stripe-button"
-                             id="stripe-checkout-button"
-                             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                             data-label="Message"
-                             data-amount= '<%= user.donation_amount * 100 %>'
-                             data-image='<%= image_url("logo.png")%>'
-                             data-name="Chafity"
-                             data-email= '<%= user.email %>'
-                             data-zip-code= "true"
-                             data-currency= "eur"
-                             data-shipping-address= "true"
-                             data-locale="auto">
-                      </script>
-                    <% end %>
-                  <% end %>
-                </span>
+                    <span>
+                        <% if current_user.has_paid_to_contact(user) %>
+                        <!-- <input type="submit" name="Message" value="message" id='popup'></input> -->
+                        <button type="button" name="button" class="ui button popup-message">
+                            <i class="mail icon"></i>
+                            Message
+                        </button>
+                        <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
+                            <%= simple_form_for current_user.messages.new, url: user_messages_path(current_user.id), method: :post do |f| %>
+                            <div class="row">
+                                <div class="" style="padding: 5px; border-radius:8px">
+                                    <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
+                                    <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{user.id}"} %>
+                                    <%= f.input :message_body, as: :text, input_html: {required: true}, label: false %>
+                                    <!-- <%= f.input :appointment_date, as: :date, default: Date.today + 1.day %> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none;">
+                                        <span style="color:orange">
+                                            <i class="ui orange send icon"></i> Send
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <%= form_tag charges_path do %>
+                        <%= hidden_field_tag "amount", user.donation_amount %>
+                        <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{user.first_name} for #{user.charity}" %>
+                        <%= hidden_field_tag "id", user.id %>
+                        <script
+                            type="application/javascript"
+                            src="https://checkout.stripe.com/checkout.js"
+                            class="stripe-button"
+                            id="stripe-checkout-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-label="Donate and Contact"
+                            data-amount='<%= user.donation_amount * 100 %>'
+                            data-image='<%= image_url("logo.png")%>'
+                            data-name="Chafity"
+                            data-email='<%= user.email %>'
+                            data-zip-code="true"
+                            data-currency="eur"
+                            data-shipping-address="true"
+                            data-locale="auto"></script>
+                        <% end %>
+                        <% end %>
+                    </span>
                 </div>
-              </div>
             </div>
+        </div>
         <% end %>
-    <% end %>
-  </div>
+        <% end %>
+    </div>
 </div>
 
-
 <div class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Modal Title
-  </div>
-  <div class="image content">
-    <div class="image">
-      An image can appear on left or an icon
+    <i class="close icon"></i>
+    <div class="header">
+        Modal Title
     </div>
-    <div class="description">
-      A description can appear on the right
+    <div class="image content">
+        <div class="image">
+            An image can appear on left or an icon
+        </div>
+        <div class="description">
+            A description can appear on the right
+        </div>
     </div>
-  </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
+    <div class="actions">
+        <div class="ui button">Cancel</div>
+        <div class="ui button">OK</div>
+    </div>
 </div>

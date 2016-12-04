@@ -12,13 +12,14 @@ class User < ApplicationRecord
   using: { tsearch: { prefix: true } },
   associated_against: { charity: [:name, :address, :country] }
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_uniqueness_of :email
   validates_numericality_of :donation_amount, greater_than_or_equal_to: 3, message: "Come on give more >= 3 for charity please :)"
   has_many :messages
-  has_one :charity
+  has_many :suggestions
+  belongs_to :charity
   accepts_nested_attributes_for :charity, reject_if: proc { |attributes| attributes['name'].blank? }
 
   before_save do
