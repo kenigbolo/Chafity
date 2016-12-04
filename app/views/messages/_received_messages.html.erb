@@ -1,3 +1,31 @@
+<!-- <div class="row">
+    <% unless @messages.nil?%>
+    <% @messages.each do |message| %>
+    <div class="col-md-4 ui segment">
+      <div class="row">
+        <div class="col-md-4">
+        <%= image_tag message.user.image_url.to_s, alt: 'image',size: '80x80', class: 'ui circular image'  %>
+        </div>
+        <div class="col-md-8">
+          <%= message.user.first_name %>
+          <%= message.user.last_name %>
+        </div>
+      </div>
+      <div class="ui sengment">
+
+          <%= message.message_body %>
+
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <%end%>
+    <%else%>
+    <h2>Oops no message ;(</h2>
+    <%end%>
+</div> -->
+
+<div class="row">
 <% if @received_messages != nil %>
   <div class="col-md-4">
     <div class="container" id="message_body">
@@ -38,4 +66,7 @@
     </div>
 
   </div>
+<% else%>
+<h2>Oops no message yet ;( </h2>
 <% end %>
+</div>
