@@ -2,7 +2,7 @@
     <% if @received_messages != nil %>
     <div class="row">
         <% @received_messages.each do |message| %>
-        <div class="col-md-6" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+        <div class="col-md-10" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
             <div class="row" style="margin-top:10px">
                 <div class="col-md-3">
                     <% if message.user.image_url.present? %>
@@ -21,26 +21,59 @@
                 <%= message.message_body%>
 
             </div>
+            <!-- oioioi -->
+            <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExample-<%= message.id %>" aria-expanded="false" aria-controls="collapseExample">
+                Responses
+            </a>
+
+            <div class="collapse" id="collapseExample-<%= message.id %>">
+                <div class="well">
+                    <h4>Responses:</h4>
+                    <% message.responses.each do |response| %>
+                    <% if response.body.first == "{" %>
+                    <% if response.user_id == current_user.id %>
+                    <div class="ui segment blue">
+                        <%= response.appointment_date! %>
+                    </div>
+                <% else %>
+                    <div class="ui segment red">
+                        <%= response.appointment_date! %>
+                    </div>
+                    <% end %>
+                    <%else%>
+                    <% if response.user_id == current_user.id %>
+                    <div class="ui segment blue">
+                        <%= response.body %>
+                    </div>
+                <% else %>
+                    <div class="ui segment red">
+                        <%= response.body %>
+                    </div>
+                    <% end %>
+                    <%end%>
+                    <% end %>
+                </div>
+            </div>
+
+            <!-- saljkgfasjdkl -->
             <div class="row">
                 <span>
                     <button type="button" name="button" class="ui button popup-response">
                         <i class="ui talk icon"></i>
-                        Message</button>
+                        Reply</button>
 
                     <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
                         <%= simple_form_for message.responses.new, url: user_message_responses_path(current_user.id, message.id), method: :post do |f| %>
                         <div class="row">
                             <div class="" style="padding: 5px; border-radius:8px">
                                 <%= f.input :body, as: :text, input_html: {required: true}, label: false %>
-
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-offset-7 col-md-3">
-                                <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none;">
-                                    <span style="color:orange">
-                                        <i class="ui green send icon"></i>
-                                    </span>
+                            <div class="col-md-offset-4 col-md-4">
+                                <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none; color: orange">
+                                    Send
+                                    <i class="ui orange send icon"></i>
                                 </button>
                             </div>
                         </div>
@@ -48,19 +81,43 @@
                     </div>
                 </span>
                 <span>
-                    <button type="button" name="button" class="ui button ">
+                    <button type="button" name="button" class="ui button popup-schedule">
                         <i class="ui calendar icon"></i>Schedule</button>
+                    <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
+                        <%= simple_form_for message.responses.new, url: schedule_appointment_path(message.id), method: :post do |f| %>
+                        <div class="row">
+                            <div class="" style="padding: 5px; border-radius:8px">
+                                <%= f.input :body, as: :datetime, input_html: {required: true}, label: false %>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-4 col-md-4">
+                                <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none; color: orange">
+                                    Schedule
+                                    <i class="ui orange calendar icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </span>
+                <% if message.status == false %>
+                <span>
+                    <a href="<%= accept_message_path(message.id) %>">
+                        <button type="button" name="button" class="ui button">
+                            <i class="ui checkmark icon "></i>
+                            Accept</button>
+                    </a>
                 </span>
                 <span>
-                    <button type="button" name="button" class="ui button">
-                        <i class="ui checkmark icon "></i>
-                        <a href="<%= accept_message_path(message.id) %>">Accept</a></button>
+                    <a href="<%= reject_message_path(message.id) %>">
+                        <button type="button" name="button" class="ui button">
+                            <i class="ui remove icon"></i>
+                            Decline</button>
+                    </a>
                 </span>
-                <span>
-                    <button type="button" name="button" class="ui button">
-                        <i class="ui remove icon"></i>
-                        Decline</button>
-                </span>
+                <% end %>
             </div>
         </div>
         <% end %>

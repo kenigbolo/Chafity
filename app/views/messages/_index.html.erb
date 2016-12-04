@@ -15,11 +15,14 @@
       <%= render 'messages/received_messages' %>
     </div>
     <div role="tabpanel" class="tab-pane" id="suggest">
-      <br />
-      <%= form_for current_user.suggestions.build, url: suggest_charity_path, method: :post do |f| %>
-        <%= f.label :charity_name %>:
-        <%= f.text_field :charity_name, required: true %><br />
-        <%= f.submit %>
+      <div class="row">
+        <div class="ui segment col-md-6 col-md-offset-3">
+          <%= form_for current_user.suggestions.build, url: suggest_charity_path, method: :post do |f| %>
+            <%= f.label :charity_name %>:
+            <%= f.text_field :charity_name, required: true %>
+            <%= f.button 'Send', class: 'ui green button' %>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>

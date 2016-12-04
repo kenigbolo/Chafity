@@ -55,20 +55,32 @@ $(function() {
             position: 'bottom right',
             on: 'click',
             delay: {
-                show: 50,
-                hide: 50
+                show: 500,
+                hide: 500
             }
         });
 
-        $('.popup-response')
-            .popup({
-                inline: true,
-                hoverable: true,
-                position: 'bottom left',
-                on: 'click',
-                delay: {
-                    show: 50,
-                    hide: 50
-                }
-            });
+    $('.popup-response')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom left',
+            on: 'click',
+            delay: {
+                show: 500,
+                hide: 500
+            }
+        });
+
+    $('.popup-schedule')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom left',
+            on: 'click',
+            delay: {
+                show: 500,
+                hide: 500
+            }
+        });
 });

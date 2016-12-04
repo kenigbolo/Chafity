@@ -1,7 +1,7 @@
 <% if @sent_messages != nil %>
 <div class="container">
     <%@sent_messages.each do |message|%>
-    <div class="col-md-6" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
+    <div class="col-md-10" style="margin-left: 5px;margin-top:15px; margin-right: 5px; background-color: rgba(58, 74, 81, 0.15)">
         <div class="row" style="margin-top:10px">
             <div class="col-md-3">
                 <% if message.reciever.image_url.present? %>
@@ -15,16 +15,47 @@
                 <span><%= message.reciever.description%></span>
             </div>
         </div>
-        <div class="ui segment">
-
+        <div class="ui segment yellow">
             <%= message.message_body%>
-
         </div>
-        <div class="row">
+        <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseSent<%message.id%>" aria-expanded="false" aria-controls="collapseExample">
+            Responses
+        </a>
+
+        <div class="collapse" id="collapseSent<%message.id%>">
+            <div class="well">
+                <h4>Responses:</h4>
+                <% message.responses.each do |response| %>
+                <% if response.body.first == "{" %>
+                <% if response.user_id == current_user.id %>
+                <div class="ui segment blue">
+                    <%= response.appointment_date! %>
+                </div>
+            <% else %>
+                <div class="ui segment red">
+                    <%= response.appointment_date! %>
+                </div>
+                <% end %>
+                <%else%>
+                <% if response.user_id == current_user.id %>
+                <div class="ui segment blue">
+                    <%= response.body %>
+                </div>
+            <% else %>
+                <div class="ui segment red">
+                    <%= response.body %>
+                </div>
+                <% end %>
+                <%end%>
+                <% end %>
+            </div>
+        </div>
+<!-- FIXME: Not really needed -->
+        <!-- <div class="row">
             <span>
                 <button type="button" name="button" class="ui button ">
                     <i class="ui talk icon"></i>
-                    Message</button>
+                    Reply</button>
             </span>
             <span>
                 <button type="button" name="button" class="ui button ">
@@ -40,7 +71,7 @@
                     <i class="ui remove icon"></i>
                     Decline</button>
             </span>
-        </div>
+        </div> -->
     </div>
     <%end%>
 </div>

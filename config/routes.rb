@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   post '/charities/suggest', to: 'users#suggestion', as: :suggest_charity
   get 'accept/:id', to: 'responses#accept', as: :accept_message
   get 'reject/:id', to: 'responses#reject', as: :reject_message
+  post 'message/schedule/:message_id', to: 'responses#schedule', as: :schedule_appointment
 
 end
