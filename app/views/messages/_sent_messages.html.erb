@@ -18,11 +18,11 @@
         <div class="ui segment yellow">
             <%= message.message_body%>
         </div>
-        <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseSent<%message.id%>" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-primary pull-right" role="button" data-toggle="collapse" href="#collapseExample-<%= message.id %>" aria-expanded="false" aria-controls="collapseExample">
             Responses
         </a>
 
-        <div class="collapse" id="collapseSent<%message.id%>">
+        <div class="collapse" id="collapseExample-<%= message.id %>">
             <div class="well">
                 <h4>Responses:</h4>
                 <% message.responses.each do |response| %>
