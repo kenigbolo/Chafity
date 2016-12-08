@@ -35,9 +35,11 @@ class UsersController < ApplicationController
 
   def suggestion
     suggestion = Suggestion.new(suggestion_params)
+    suggestion.user_id = current_user.id
     if suggestion.save!
       UserMailer.send_suggestion(suggestion).deliver
       flash[:notice] = 'Your suggestion has been successfully saved. We will get back to you shortly!'
+      redirect_back(fallback_location: root_path)
     else
       flash[:notice] = 'Something went wrong, please try again!'
     end
