@@ -30,14 +30,15 @@ class UsersController < ApplicationController
     @sent_messages = @user.messages.order(:updated_at)
     @received_messages = Message.where(receiver_id: current_user.id).order(:updated_at)
     @response = Response.new
-    # @messages = Message.where('user_id = ? OR receiver_id = ?', current_user.id, current_user.id.to_s)
   end
 
   def suggestion
     suggestion = Suggestion.new(suggestion_params)
+    suggestion.user_id = current_user.id
     if suggestion.save!
       UserMailer.send_suggestion(suggestion).deliver
       flash[:notice] = 'Your suggestion has been successfully saved. We will get back to you shortly!'
+      redirect_back(fallback_location: root_path)
     else
       flash[:notice] = 'Something went wrong, please try again!'
     end

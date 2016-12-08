@@ -1,13 +1,14 @@
 class ResponsesController < ApplicationController
+  before_action :set_user, :authenticate_user!
 
   def create
     response = create_response
     if response.save!
       flash[:notice] = "Your response has been sent successfully"
-      redirect_to request.referrer
+      redirect_back(fallback_location: root_path)
     else
       flash[:notice] = "Something went wrong, please try again!"
-      redirect_to request.referrer
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -16,10 +17,10 @@ class ResponsesController < ApplicationController
     if response.save!
       flash[:notice] = "Your appointment schedule has been sent successfully"
       Schedule.create(response_id: response.id, schedule: DateTime.parse(response.body))
-      redirect_to request.referrer
+      redirect_back(fallback_location: root_path)
     else
       flash[:notice] = "Something went wrong, please try again!"
-      redirect_to request.referrer
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -30,7 +31,7 @@ class ResponsesController < ApplicationController
     message.status = true
     if message.save!
       flash[:notice] = "Message has been accepted successfully"
-      redirect_to request.referrer
+      redirect_to user_path(@user)
     else
       flash[:notice] = "Something went wrong, please try again"
       redirect_back(fallback_location: root_path)
@@ -46,6 +47,10 @@ class ResponsesController < ApplicationController
   private
   def reply_params
     params.require(:response).permit(:body, :message_id)
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def create_response
