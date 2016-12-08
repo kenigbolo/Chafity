@@ -19,20 +19,21 @@
 //= require_tree .
 
 $(function() {
-    $( "#message_form").hide();
-    $( "#new_message" ).click(function() {
+    $('#messages-form').hide();
+    $("#message_form").hide();
+    $("#new_message").click(function() {
         $("#message_form").show();
         $("#new_reply").hide();
         $("#message_options").hide();
         $("#replies").hide();
     });
 
-    $( "#cancel").click(function(){
+    $("#cancel").click(function() {
         $("#message_form").hide();
         $("#new_message").show();
     });
 
-    $( "#reply").click(function(){
+    $("#reply").click(function() {
         $("#message_body").hide();
         $("#new_reply").show();
     });
@@ -44,4 +45,42 @@ $(function() {
     $('#advanced_keywords').autocomplete({
         source: $('#advanced_keywords').data('autocomplete-source')
     });
+
+    // semantic-ui
+
+    $('.popup-message')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom right',
+            on: 'click',
+            delay: {
+                show: 500,
+                hide: 500
+            }
+        });
+
+    $('.popup-response')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom left',
+            on: 'click',
+            delay: {
+                show: 500,
+                hide: 500
+            }
+        });
+
+    $('.popup-schedule')
+        .popup({
+            inline: true,
+            hoverable: true,
+            position: 'bottom left',
+            on: 'click',
+            delay: {
+                show: 500,
+                hide: 500
+            }
+        });
 });

@@ -24,7 +24,7 @@
                 <%= @user.description %>
                 <br>
                 Charity:
-                <%= @charity.name if @charity.present? %>
+                <%= @user.charity.name if @charity.present? %>
             </h3>
             <% if @user.id == current_user.id %>
             <span ><%= link_to 'Edit Accout', edit_user_registration_path %></span>
@@ -49,56 +49,12 @@
   </div>
 </div>
 
-
-<!--messages -->
-<%# TODO: This part needs so refactor not sure how to handle this yet %>
-<div class="container">
-    <% if @user.id == current_user.id %>
-    <%= render 'messages/index'  %>
-    <% end %>
-</div>
-
-<div class="">
-    <% if @user.id != current_user.id %>
-    <% unless session["payment"] == "succeeded" %>
-    <div class="container" id="charges_form">
-        <%= form_tag charges_path do %>
-        <article>
-            <% if flash[:error].present? %>
-            <div id="error_explanation">
-                <p><%= flash[:error] %></p>
-            </div>
-            <% end %>
-            <label class="amount">
-                <span>Donate:
-                    <%= number_to_currency @user.donation_amount, precision: 1, unit: '€' %></span>
-            </label>
-        </article>
-
-        <%= hidden_field_tag "amount", @user.donation_amount %>
-        <%= hidden_field_tag "desc", "Donation from #{current_user.first_name} to #{@user.first_name} approved Charity" %>
-        <%= hidden_field_tag "id", @user.id %>
-
-        <%= render 'stripe-checkout' %>
-        <% end %>
-    </div>
-    <% end %>
-    <% end %>
-
-</div>
-
-<div class="col-md-4 col-offset-4">
-    <% if session["payment"] == "succeeded" %>
-    <% session["payment"] = " " %>
-    <div class="container">
-        <%= simple_form_for current_user.messages.build, url: user_messages_path(current_user.id), method: :post do |f| %>
-        <%= f.input :sender_id, :as => :hidden, input_html: {value: "#{current_user.id}"} %>
-        <%= f.input :receiver_id, :as => :hidden, input_html: {value: "#{@user.id}"} %>
-        <%= f.input :message_body, as: :text %>
-        <%= f.input :appointment_date %>
-        <%= f.button :submit %>
-        <% end %>
-        <button id="cancel">Cancel</button>
-    </div>
-    <% end %>
+<div class="row">
+  <% if @user == current_user%>
+  <%= render 'messages/index' %>
+  <%else%>
+  <div class="ui segment">
+    <p>Not loading...</p>
+  </div>
+  <%end%>
 </div>
