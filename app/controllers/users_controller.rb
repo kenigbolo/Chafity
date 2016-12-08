@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     @sent_messages = @user.messages.order(:updated_at)
     @received_messages = Message.where(receiver_id: current_user.id).order(:updated_at)
     @response = Response.new
-    # @messages = Message.where('user_id = ? OR receiver_id = ?', current_user.id, current_user.id.to_s)
   end
 
   def suggestion
