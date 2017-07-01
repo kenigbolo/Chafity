@@ -51,13 +51,31 @@
             </div>
         </div>
 <!-- FIXME: Not really needed -->
-        <!-- <div class="row">
+        <div class="row">
             <span>
-                <button type="button" name="button" class="ui button ">
+                <button type="button" name="button" class="ui button popup-response">
                     <i class="ui talk icon"></i>
                     Reply</button>
+
+                <div class="row ui special popup" id="messages-form" style="background-color: #3a4a51">
+                    <%= simple_form_for message.responses.new, url: user_message_responses_path(current_user.id, message.id), method: :post do |f| %>
+                    <div class="row">
+                        <div class="" style="padding: 5px; border-radius:8px">
+                            <%= f.input :body, as: :text, input_html: {required: true}, label: false %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4">
+                            <button type="submit" name="button" class="orange button " style="padding: 0;border: none;background: none; color: orange">
+                                Send
+                                <i class="ui orange send icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
             </span>
-            <span>
+            <!-- <span>
                 <button type="button" name="button" class="ui button ">
                     <i class="ui calendar icon"></i>Schedule</button>
             </span>
@@ -70,8 +88,8 @@
                 <button type="button" name="button" class="ui button">
                     <i class="ui remove icon"></i>
                     Decline</button>
-            </span>
-        </div> -->
+            </span> -->
+        </div>
     </div>
     <%end%>
 </div>

@@ -3,8 +3,10 @@
     <%= f.error_notification %>
     <div class="ui horizontal divider">
         <h2>Edit Profile</h2>
+      <%= devise_error_messages! %>
     </div>
     <div class="ui three column grid">
+
         <div class="column">
             <div class="ui segment " style="background-color:#eeeeee">
                 <h2 class="ui dividing header">
@@ -105,7 +107,7 @@
                 <div class="ui buttons centered">
                     <%= link_to "Cancel", :back, class: 'large ui red right button' %>
                     <div class="or"></div>
-                    <%= f.button :submit, "Ready", class: 'large ui positive button' , data: { confirm: "Confirm?" }%>
+                    <%= f.button :submit, "Ready", class: 'large ui positive button'%>
                 </div>
             </div>
         </div>
