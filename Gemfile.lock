@@ -64,7 +64,7 @@ GEM
       sass (~> 3.4.22)
       thor (~> 0.19.1)
     builder (3.2.2)
-    byebug (9.0.6)
+    byebug (10.0.2)
     capybara (2.10.1)
       addressable
       mime-types (>= 1.16)
