@@ -16,7 +16,7 @@ gem 'bourbon', '~> 5.0.0.beta.5'
 gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'stripe'
-gem 'rails_admin', '~> 1.0'
+gem 'rails_admin', '~> 2.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
